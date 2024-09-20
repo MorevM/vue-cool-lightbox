@@ -1,82 +1,82 @@
 {
-  "name": "vue-cool-lightbox",
-  "description": "A pretty Vue.js component to display an image gallery lightbox inspired by fancybox",
-  "version": "2.7.5",
-  "private": false,
-  "author": "Lucas Pulliese <lucaspulliese10@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "npm run build:unpkg & npm run build:es & npm run build:umd",
-    "build:demo": "vue-cli-service build --dest build",
-    "build:umd": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format umd --file dist/vue-cool-lightbox.umd.js",
-    "build:es": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format es --file dist/vue-cool-lightbox.esm.js",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format iife --file dist/vue-cool-lightbox.min.js",
-    "lint:eslint": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\"",
-    "lint:eslint:fix": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\" --fix",
-    "lint": "yarn lint:eslint",
-    "lint:fix": "yarn lint:eslint:fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lucaspulliese/vue-cool-lightbox"
-  },
-  "keywords": [
-    "vue",
-    "vuejs",
-    "lightbox",
-    "gallery",
-    "image gallery",
-    "image lightbox"
-  ],
-  "bugs": {
-    "url": "https://github.com/lucaspulliese/vue-cool-lightbox/issues"
-  },
-  "homepage": "https://vue-cool-lightbox.lucaspulliese.com",
-  "dependencies": {
-    "body-scroll-lock": "^3.1.5",
-    "plyr": "^3.6.7",
-    "vue": "^2.6.10"
-  },
-  "main": "dist/vue-cool-lightbox.umd.js",
-  "module": "dist/vue-cool-lightbox.esm.js",
-  "unpkg": "dist/vue-cool-lightbox.min.js",
-  "browser": {
-    "./sfc": "src/components/vue-cool-lightbox.vue"
-  },
-  "devDependencies": {
-    "@morev/eslint-config": "^34.0.0",
-    "@vue/cli-service": "^4.5.6",
-    "core-js": "^3.3.2",
-    "cross-env": "^5.2.0",
-    "eslint": "8.57.1",
-    "minimist": "^1.2.0",
-    "rollup": "^1.14.4",
-    "rollup-plugin-buble": "^0.19.6",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-css-only": "^2.0.0",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-uglify-es": "0.0.1",
-    "rollup-plugin-vue": "^4.7.2",
-    "sass": "^1.79.2",
-    "sass-loader": "^8.0.0",
-    "serialize-javascript": ">=2.1.1",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
-  "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
-  ]
+	"name": "vue-cool-lightbox",
+	"description": "A pretty Vue.js component to display an image gallery lightbox inspired by fancybox",
+	"version": "2.7.5",
+	"private": false,
+	"license": "MIT",
+	"author": "Lucas Pulliese <lucaspulliese10@gmail.com>",
+	"homepage": "https://vue-cool-lightbox.lucaspulliese.com",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lucaspulliese/vue-cool-lightbox"
+	},
+	"bugs": {
+		"url": "https://github.com/lucaspulliese/vue-cool-lightbox/issues"
+	},
+	"keywords": [
+		"vue",
+		"vuejs",
+		"lightbox",
+		"gallery",
+		"image gallery",
+		"image lightbox"
+	],
+	"files": [
+		"dist/*",
+		"src/*",
+		"public/*",
+		"*.json",
+		"*.js"
+	],
+	"main": "dist/vue-cool-lightbox.umd.js",
+	"module": "dist/vue-cool-lightbox.esm.js",
+	"browser": {
+		"./sfc": "src/components/vue-cool-lightbox.vue"
+	},
+	"unpkg": "dist/vue-cool-lightbox.min.js",
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "npm run build:unpkg & npm run build:es & npm run build:umd",
+		"build:demo": "vue-cli-service build --dest build",
+		"build:umd": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format umd --file dist/vue-cool-lightbox.umd.js",
+		"build:es": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format es --file dist/vue-cool-lightbox.esm.js",
+		"build:unpkg": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format iife --file dist/vue-cool-lightbox.min.js",
+		"lint:eslint": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\"",
+		"lint:eslint:fix": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\" --fix",
+		"lint": "yarn lint:eslint",
+		"lint:fix": "yarn lint:eslint:fix"
+	},
+	"dependencies": {
+		"body-scroll-lock": "^3.1.5",
+		"plyr": "^3.6.7",
+		"vue": "^2.6.10"
+	},
+	"devDependencies": {
+		"@morev/eslint-config": "^34.0.0",
+		"@vue/cli-service": "^4.5.6",
+		"core-js": "^3.3.2",
+		"cross-env": "^5.2.0",
+		"eslint": "8.57.1",
+		"minimist": "^1.2.0",
+		"rollup": "^1.14.4",
+		"rollup-plugin-buble": "^0.19.6",
+		"rollup-plugin-commonjs": "^9.3.4",
+		"rollup-plugin-css-only": "^2.0.0",
+		"rollup-plugin-replace": "^2.2.0",
+		"rollup-plugin-uglify-es": "0.0.1",
+		"rollup-plugin-vue": "^4.7.2",
+		"sass": "^1.79.2",
+		"sass-loader": "^8.0.0",
+		"serialize-javascript": ">=2.1.1",
+		"vue-template-compiler": "^2.6.10"
+	},
+	"postcss": {
+		"plugins": {
+			"autoprefixer": {}
+		}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions"
+	]
 }
