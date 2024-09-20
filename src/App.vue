@@ -23,7 +23,7 @@
 <script>
 	import Plyr from 'plyr';
 	import 'plyr/dist/plyr.css';
-	import CoolLightBox from './components/CoolLightBox.vue';
+	import CoolLightBox from './components/cool-light-box.vue';
 
 	export default {
 		name: 'app',

@@ -1,10 +1,10 @@
-import CoolLightBox from './components/CoolLightBox.vue';
+import CoolLightBox from './components/cool-light-box.vue';
 
-function install(Vue) {
+const install = (Vue) => {
 	if (install.installed) return;
 	install.installed = true;
 	Vue.component('CoolLightBox', CoolLightBox);
-}
+};
 
 const plugin = {
 	install,

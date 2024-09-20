@@ -450,35 +450,22 @@
 
 <script>
 	import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-	import LazyLoadDirective from '../directives/LazyLoad';
-	import AutoplayObserver from '../directives/AutoplayObserver';
+	import LazyLoadDirective from '../directives/lazy-load.js';
+	import AutoplayObserver from '../directives/autoplay-observer.js';
 
 	export default {
+		name: 'cool-light-box',
 		directives: {
 			lazyload: LazyLoadDirective,
 			autoplayObserver: AutoplayObserver,
 		},
 
 		props: {
-			index: {
-				required: true,
-			},
-			effect: {
-				type: String,
-				default: 'swipe',
-			},
-			items: {
-				type: Array,
-				required: true,
-			},
-			loop: {
-				type: Boolean,
-				default: true,
-			},
-			slideshow: {
-				type: Boolean,
-				default: true,
-			},
+			index: { required: true, type: [Number, null] },
+			effect: { type: String, default: 'swipe' },
+			items: { type: Array, required: true },
+			loop: { type: Boolean, default: true },
+			slideshow: { type: Boolean, default: true },
 			slideshowColorBar: {
 				type: String,
 				default: '#fa4242',
@@ -578,7 +565,7 @@
 				endMouseX: 0,
 				endMouseY: 0,
 				swipeType: null,
-				IsSwipping: false,
+				isSwiping: false,
 				isDraggingSwipe: false,
 
 				// use for mouse wheel
@@ -649,7 +636,7 @@
 
 			innerStyles() {
 				return {
-					'padding-bottom': this.paddingBottom + 'px',
+					'padding-bottom': `${this.paddingBottom}px`,
 				};
 			},
 
@@ -669,7 +656,7 @@
 
 			// Lightbox classes
 			lightboxClasses() {
-				let classesReturn = [
+				const classesReturn = [
 					{ 'cool-lightbox--can-zoom': this.canZoom && !this.disableZoom },
 					{ 'cool-lightbox--zoom-disabled': this.disableZoom },
 					{ 'cool-lightbox--is-zooming': this.isZooming },
@@ -677,7 +664,7 @@
 					{ 'cool-lightbox--is-swipping': this.isDraggingSwipe },
 				];
 
-				let classString = 'cool-lightbox--thumbs-' + this.thumbsPosition;
+				const classString = `cool-lightbox--thumbs-${this.thumbsPosition}`;
 				classesReturn.push(classString);
 
 				return classesReturn;
@@ -723,10 +710,12 @@
 			zoomBar(newVal, prevVal) {
 				let item;
 				if (this.isZooming) {
-					item = this.effect == 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
+					item = this.effect === 'swipe'
+						? this.$refs.items[this.imgIndex].childNodes[0]
+						: this.$refs.items.childNodes[0];
 
 					const newZoom = 1.6 + newVal / 10;
-					item.style.transform = 'translate3d(calc(-50% + ' + this.left + 'px), calc(-50% + ' + this.top + 'px), 0px) scale3d(' + newZoom + ', ' + newZoom + ', ' + newZoom + ')';
+					item.style.transform = `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(${newZoom}, ${newZoom}, ${newZoom})`;
 				}
 			},
 
@@ -910,14 +899,15 @@
 
 			stopVideos() {
 				const videos = document.querySelectorAll('.cool-lightbox-video');
-				const isVideoPlaying = video => !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+				const isVideoPlaying = (video) =>
+					!!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
+
 				if (videos.length > 0) {
 					Array.prototype.forEach.call(videos, video => {
 						const type = video.tagName;
 
 						if (type === 'IFRAME') {
-							var iframeSrc = video.src;
-							return video.src = iframeSrc;
+							return video.src;
 						}
 
 						if (isVideoPlaying(video)) {
@@ -929,8 +919,8 @@
 
 			removeCompensateForScrollbar() {
 				document.body.classList.remove('compensate-for-scrollbar');
-				const noscrollStyle = document.querySelector('#coollightbox-style-noscroll');
-				if (noscrollStyle !== null) {
+				const noScrollStyle = document.querySelector('#coollightbox-style-noscroll');
+				if (noScrollStyle !== null) {
 					document.querySelector('#coollightbox-style-noscroll').remove();
 				}
 			},
@@ -983,7 +973,7 @@
 
 			fullScreenMode() {
 				/* Get the documentElement (<html>) to display the page in fullscreen */
-				var elem = document.documentElement;
+				const elem = document.documentElement;
 				if (elem.requestFullscreen) {
 					elem.requestFullscreen();
 				} else if (elem.mozRequestFullScreen) { /* Firefox */
@@ -997,7 +987,7 @@
 
 			// check if event is arrow button or toolbar button
 			checkIfIsButton(event) {
-				var elements = '.cool-lightbox__iframe *, .cool-lightbox-button, .cool-lightbox-button *, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
+				const elements = '.cool-lightbox__iframe *, .cool-lightbox-button, .cool-lightbox-button *, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
 				if (event.target.matches(elements)) {
 					return true;
 				}
@@ -1029,7 +1019,7 @@
 			// continue swipe event
 			continueSwipe(event) {
 				if (this.isDraggingSwipe) {
-					this.IsSwipping = true;
+					this.isSwiping = true;
 					const currentPosX = this.getMouseXPosFromEvent(event);
 					const currentPosY = this.getMouseYPosFromEvent(event);
 					const windowWidth = this.lightboxInnerWidth;
@@ -1039,14 +1029,12 @@
 					const diffY = Math.abs(currentPosY - this.initialMouseY);
 
 					// swipe type
-					if (this.swipeType == null) {
-						if (diffY > 5 || diffX > 5) {
-							this.swipeType = diffY > diffX ? 'v' : 'h';
-						}
+					if (this.swipeType === null && (diffY > 5 || diffX > 5)) {
+						this.swipeType = diffY > diffX ? 'v' : 'h';
 					}
 
 					// swipe
-					if (this.swipeType == 'h') {
+					if (this.swipeType === 'h') {
 						// swipe wrapper
 						this.xSwipeWrapper = this.dir === 'rtl' ? (windowWidth * this.imgIndex) + currentPosX - this.initialMouseX + 30 * this.imgIndex : -(windowWidth * this.imgIndex) + currentPosX - this.initialMouseX - 30 * this.imgIndex;
 					} else {
@@ -1069,11 +1057,11 @@
 
 				// event check is dragging and swipe
 				const self = this;
-				const swipeType = this.swipeType;
+				const { swipeType } = this;
 				this.isDraggingSwipe = false;
 
 				// horizontal swipe type
-				if (this.initialMouseX === 0 && swipeType == 'h') {
+				if (this.initialMouseX === 0 && swipeType === 'h') {
 					return false;
 				}
 
@@ -1087,9 +1075,9 @@
 
 				// check if is dragged
 				if (
-					((this.endMouseX - this.initialMouseX === 0) && swipeType == 'h')
+					((this.endMouseX - this.initialMouseX === 0) && swipeType === 'h')
 					|| this.isZooming
-					|| ((this.endMouseY - this.initialMouseY === 0) && swipeType == 'v')
+					|| ((this.endMouseY - this.initialMouseY === 0) && swipeType === 'v')
 				) {
 					return;
 				}
@@ -1099,7 +1087,7 @@
 
 				// reset swipe data
 				setTimeout(() => {
-					self.IsSwipping = false;
+					self.isSwiping = false;
 					self.initialMouseX = 0;
 					self.endMouseX = 0;
 				}, 10);
@@ -1150,10 +1138,12 @@
 			swipeToLeft() {
 				if (!this.hasPrevious && this.effect === 'swipe') {
 					if (this.dir === 'rtl') {
-						return this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
+						this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
+						return this.xSwipeWrapper;
 					}
 
-					return this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
+					this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
+					return this.xSwipeWrapper;
 				}
 
 				this.changeIndexToPrev();
@@ -1190,7 +1180,7 @@
 
 			// check if the image is cached
 			is_cached(src) {
-				var image = new Image();
+				const image = new Image();
 				image.src = src;
 
 				return image.complete;
@@ -1203,17 +1193,17 @@
 
 			// get video url
 			itemThumb(itemUrl, itemIndex) {
-				var thumb = this.getItemThumb(itemIndex);
+				const thumb = this.getItemThumb(itemIndex);
 				if (thumb) {
 					return thumb;
 				}
 
-				var youtubeID = this.getYoutubeID(itemUrl);
+				const youtubeID = this.getYoutubeID(itemUrl);
 				if (youtubeID) {
 					return 'https://img.youtube.com/vi/' + youtubeID + '/mqdefault.jpg';
 				}
 
-				var vimeoID = this.getVimeoID(itemUrl);
+				const vimeoID = this.getVimeoID(itemUrl);
 				if (vimeoID) {
 					return false;
 				}
@@ -1239,9 +1229,9 @@
 					return false;
 				}
 
-				const picture = this.items[imgIndex].picture;
+				const { picture } = this.items[imgIndex];
 
-				return picture.sources ? picture.sources : [];
+				return picture.sources || [];
 			},
 
 			// get item src
@@ -1334,10 +1324,8 @@
 				} else if (this.getPDFurl(this.getItemSrc(imgIndex))) {
 					return 'iframe';
 				}
+
 				return 'image';
-
-
-				return item;
 			},
 
 			// toggle play slideshow event
@@ -1372,15 +1360,8 @@
 			// move event in zoom
 			move() {
 				const self = this;
-				this.progressWidth = 100;
-				this.intervalProgress = setInterval(frame, this.slideshowDuration + 90);
 
-				self.stylesInterval = {
-					'transform': 'scaleX(1)',
-					'background': this.slideshowColorBar,
-					'transition-duration': this.slideshowDuration + 'ms',
-				};
-				function frame() {
+				const frame = () => {
 					self.stylesInterval = {
 						transform: 'scaleX(0)',
 						transition: 'none',
@@ -1399,11 +1380,20 @@
 							self.stylesInterval = {
 								'transform': 'scaleX(1)',
 								'background': self.slideshowColorBar,
-								'transition-duration': self.slideshowDuration + 'ms',
+								'transition-duration': `${self.slideshowDuration}ms`,
 							};
 						}, 50);
 					}
-				}
+				};
+
+				this.progressWidth = 100;
+				this.intervalProgress = setInterval(frame, this.slideshowDuration + 90);
+
+				self.stylesInterval = {
+					'transform': 'scaleX(1)',
+					'background': this.slideshowColorBar,
+					'transition-duration': `${this.slideshowDuration}ms`,
+				};
 			},
 
 			// show buttons event
@@ -1493,16 +1483,15 @@
 					return false;
 				}
 
-				if (this.IsSwipping) {
+				if (this.isSwiping) {
 					return false;
 				}
 
 				// item zoom
-				let item;
-				item = this.effect == 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
+				const item = this.effect === 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
 
 				// zoom variables
-				const isZooming = this.isZooming;
+				const { isZooming } = this;
 				const thisContext = this;
 
 				// Is zooming check
@@ -1547,9 +1536,8 @@
 				this.transition = 'all .3s ease';
 
 				// only if index is not null
-				if (this.imgIndex != null) {
-					let item;
-					item = this.effect == 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
+				if (this.imgIndex !== null) {
+					const item = this.effect === 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
 
 					// reset styles
 					item.style.transform = this.disableZoom ? 'translate3d(calc(-50% + ' + this.left + 'px), calc(-50% + ' + this.top + 'px), 0px)' : 'translate3d(calc(-50% + ' + this.left + 'px), calc(-50% + ' + this.top + 'px), 0px) scale3d(1, 1, 1)';
@@ -1608,25 +1596,24 @@
 				switch (direction) {
 					case 'top':
 						return this.changeIndexToPrev();
-						break;
 					case 'down':
 						return this.changeIndexToNext();
+					default:
+					// no default
 				}
 			},
 
 			// close event click outside
 			closeModal(event) {
-				if (!this.closeOnClickOutsideMobile) {
-					if (window.innerWidth < 700) {
-						return false;
-					}
-				}
-
-				if (this.IsSwipping) {
+				if (!this.closeOnClickOutsideMobile && window.innerWidth < 700) {
 					return false;
 				}
 
-				var elements = '.cool-lightbox__iframe, .cool-lightbox__iframe *, .cool-lightbox-zoom, .cool-lightbox-zoom *, .cool-lightbox-thumbs, svg, path, rect, .cool-lightbox-thumbs *, .cool-lightbox-button, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-button *, .cool-lightbox__slide__img *, .cool-lightbox-video, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
+				if (this.isSwiping) {
+					return false;
+				}
+
+				const elements = '.cool-lightbox__iframe, .cool-lightbox__iframe *, .cool-lightbox-zoom, .cool-lightbox-zoom *, .cool-lightbox-thumbs, svg, path, rect, .cool-lightbox-thumbs *, .cool-lightbox-button, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-button *, .cool-lightbox__slide__img *, .cool-lightbox-video, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
 				if (!event.target.matches(elements)) {
 					this.close();
 				}
@@ -1639,12 +1626,11 @@
 				this.swipeAnimation = null;
 
 				// animation swipe
+				const interval = () => {
+					self.swipeAnimation = null;
+				};
 				this.swipeAnimation = 'all .3s ease';
 				this.swipeInterval = setInterval(interval, 330);
-
-				function interval() {
-					self.swipeAnimation = null;
-				}
 			},
 
 			// next slide event
@@ -1711,8 +1697,8 @@
 
 			// set lightbox inner width
 			setLightboxInnerWidth() {
-				let el = document.querySelectorAll('.cool-lightbox__inner');
-				let width = el[0].clientWidth;
+				const el = document.querySelectorAll('.cool-lightbox__inner');
+				const width = el[0].clientWidth;
 				this.lightboxInnerWidth = width;
 			},
 
@@ -1739,7 +1725,6 @@
 
 				// set x position
 				this.xSwipeWrapper = -index * this.lightboxInnerWidth - 30 * index;
-				return;
 			},
 
 			// index change
@@ -1770,8 +1755,7 @@
 					return false;
 				}
 
-				const str = new String(url);
-				if (str.endsWith('.pdf')) {
+				if (url.toString().endsWith('.pdf')) {
 					return url;
 				}
 
@@ -1858,7 +1842,7 @@
 					return false;
 				}
 
-				const str = new String(url);
+				const str = url.toString();
 				const videoExtensions = [
 					'.mp4',
 					'.mov',
@@ -1885,7 +1869,7 @@
 					return false;
 				}
 
-				const str = new String(url);
+				const str = url.toString();
 				if (str.includes('.mp4') || str.includes('.mov')) {
 					return 'mp4';
 				}
@@ -1927,6 +1911,8 @@
 						return e.preventDefault();
 					case 27:
 						return this.close();
+					default:
+					// no default
 				}
 			},
 		},
