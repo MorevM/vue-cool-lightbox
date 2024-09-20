@@ -12,7 +12,10 @@
     "build:umd": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format umd --file dist/vue-cool-lightbox.umd.js",
     "build:es": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format es --file dist/vue-cool-lightbox.esm.js",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format iife --file dist/vue-cool-lightbox.min.js",
-    "lint": "vue-cli-service lint"
+    "lint:eslint": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\"",
+    "lint:eslint:fix": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\" --fix",
+    "lint": "yarn lint:eslint",
+    "lint:fix": "yarn lint:eslint:fix"
   },
   "repository": {
     "type": "git",
@@ -42,14 +45,11 @@
     "./sfc": "src/components/vue-cool-lightbox.vue"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.2.2",
-    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@morev/eslint-config": "^34.0.0",
     "@vue/cli-service": "^4.5.6",
-    "babel-eslint": "^10.0.3",
     "core-js": "^3.3.2",
     "cross-env": "^5.2.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint": "8.57.1",
     "minimist": "^1.2.0",
     "rollup": "^1.14.4",
     "rollup-plugin-buble": "^0.19.6",
@@ -62,21 +62,6 @@
     "sass-loader": "^8.0.0",
     "serialize-javascript": ">=2.1.1",
     "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": false,
-    "env": {
-      "node": false
-    },
-    "extends": [
-      "plugin:vue/essential"
-    ],
-    "rules": {
-      "no-console": "off"
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "postcss": {
     "plugins": {

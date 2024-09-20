@@ -1,0 +1,21 @@
+{
+	"prettier.enable": false,
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"json",
+		"html",
+		"vue",
+		"markdown",
+		"yaml"
+	],
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.stylelint": "explicit"
+	},
+	"css.validate": false,
+	"less.validate": false,
+	"scss.validate": false
+}
