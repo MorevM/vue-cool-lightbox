@@ -23,17 +23,10 @@
 		"image lightbox"
 	],
 	"files": [
-		"dist/*",
-		"src/*",
-		"public/*",
-		"*.json",
-		"*.js"
+		"dist"
 	],
 	"main": "dist/vue-cool-lightbox.cjs",
 	"module": "dist/vue-cool-lightbox.esm.js",
-	"browser": {
-		"./sfc": "src/components/vue-cool-lightbox.vue"
-	},
 	"unpkg": "dist/vue-cool-lightbox.umd.js",
 	"scripts": {
 		"dev": "vite --config vite.config.dev.js",
