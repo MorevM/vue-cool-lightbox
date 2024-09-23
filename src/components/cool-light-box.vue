@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/max-len -- Mostly SVG's limitation -->
 <template>
 	<transition name="cool-lightbox-modal">
 		<div
@@ -21,7 +22,12 @@
 						}"
 						@click="imgIndex = itemIndex"
 					>
-						<svg v-if="getMediaType(itemIndex) === 'video'" class="cool-lightbox__thumb__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+						<svg
+							v-if="getMediaType(itemIndex) === 'video'"
+							class="cool-lightbox__thumb__icon"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+						>
 							<path d="M6.5 5.4v13.2l11-6.6z"></path>
 						</svg>
 
@@ -101,7 +107,7 @@
 						>
 							<img
 								v-if="!isItemPicture(itemIndex)"
-								:key="itemIndex"
+								:key="itemIndex + 'image'"
 								draggable="false"
 								:data-src="getItemSrc(itemIndex)"
 								:data-srcset="getItemSrcSet(itemIndex)"
@@ -119,7 +125,7 @@
 								@touchmove="handleMouseMove($event)"
 								@touchend="handleMouseUp($event)"
 							/>
-							<picture v-else :key="itemIndex">
+							<picture v-else :key="itemIndex + 'picture'">
 								<source
 									v-for="(source, sourceIndex) in getPictureSources(itemIndex)"
 									:key="`source-${imgIndex}-${sourceIndex}`"
@@ -194,7 +200,11 @@
 								:data-autoplay="setAutoplay(itemIndex)"
 								:style="aspectRatioVideo"
 							>
-								<source :src="checkIsMp4(getItemSrc(itemIndex))" :type="'video/' + (getVideoExt(getItemSrc(itemIndex)) ? getVideoExt(getItemSrc(itemIndex)) : getExtFromItem(itemIndex))" />
+								<source
+									:src="checkIsMp4(getItemSrc(itemIndex))"
+									:type="'video/' + (getVideoExt(getItemSrc(itemIndex)) ? getVideoExt(getItemSrc(itemIndex)) : getExtFromItem(itemIndex))"
+								/>
+								<!-- eslint-disable-line vue/no-bare-strings-in-template -->
 								Sorry, your browser doesn't support embedded videos
 							</video>
 						</div>
@@ -210,8 +220,18 @@
 						class="cool-lightbox__slide cool-lightbox__slide--current"
 					>
 						<transition name="cool-lightbox-slide-change" mode="out-in">
-							<div v-if="getMediaType(imgIndex) === 'image'" key="image" class="cool-lightbox__slide__img" :style="imgWrapperStyle">
-								<transition v-if="!isItemPicture(imgIndex)" key="transition-1" name="cool-lightbox-slide-change" mode="out-in">
+							<div
+								v-if="getMediaType(imgIndex) === 'image'"
+								key="image"
+								class="cool-lightbox__slide__img"
+								:style="imgWrapperStyle"
+							>
+								<transition
+									v-if="!isItemPicture(imgIndex)"
+									key="transition-1"
+									name="cool-lightbox-slide-change"
+									mode="out-in"
+								>
 									<img
 										:key="imgIndex"
 										draggable="false"
@@ -302,7 +322,11 @@
 										:data-autoplay="setAutoplay(imgIndex)"
 										:style="aspectRatioVideo"
 									>
-										<source :src="checkIsMp4(getItemSrc(imgIndex))" :type="'video/' + (getVideoExt(getItemSrc(imgIndex)) ? getVideoExt(getItemSrc(imgIndex)) : getExtFromItem(imgIndex))" />
+										<source
+											:src="checkIsMp4(getItemSrc(imgIndex))"
+											:type="'video/' + (getVideoExt(getItemSrc(imgIndex)) ? getVideoExt(getItemSrc(imgIndex)) : getExtFromItem(imgIndex))"
+										/>
+										<!-- eslint-disable-line vue/no-bare-strings-in-template -->
 										Sorry, your browser doesn't support embedded videos
 									</video>
 								</transition>
@@ -315,13 +339,25 @@
 				<!-- /cool-lightbox__wrapper -->
 
 				<transition name="cool-lightbox-modal">
-					<div v-show="checkIfIsObject(imgIndex) && (items[imgIndex].title || items[imgIndex].description)" key="caption-block" class="cool-lightbox-caption">
+					<div
+						v-show="checkIfIsObject(imgIndex) && (items[imgIndex].title || items[imgIndex].description)"
+						key="caption-block"
+						class="cool-lightbox-caption"
+					>
 						<transition name="cool-lightbox-slide-change" mode="out-in">
-							<h6 v-if="checkIfIsObject(imgIndex) && items[imgIndex].title" key="title" v-html="items[imgIndex].title"></h6>
+							<h6
+								v-if="checkIfIsObject(imgIndex) && items[imgIndex].title"
+								key="title"
+								v-html="items[imgIndex].title"
+							></h6>
 						</transition>
 
 						<transition name="cool-lightbox-slide-change" mode="out-in">
-							<p v-if="checkIfIsObject(imgIndex) && items[imgIndex].description" key="description" v-html="items[imgIndex].description"></p>
+							<p
+								v-if="checkIfIsObject(imgIndex) && items[imgIndex].description"
+								key="description"
+								v-html="items[imgIndex].description"
+							></p>
 						</transition>
 					</div>
 					<!-- /cool-lightbox-caption -->
@@ -449,9 +485,15 @@
 </template>
 
 <script>
+	/* eslint-disable no-autofix/vue/no-boolean-default -- Do not want breaking change */
+	/* eslint-disable @stylistic/js/no-mixed-operators -- Way too long to fix */
+
 	import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 	import LazyLoadDirective from '../directives/lazy-load.js';
 	import AutoplayObserver from '../directives/autoplay-observer.js';
+
+	const isVideoPlaying = (video) =>
+		!!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 
 	export default {
 		name: 'cool-light-box',
@@ -461,162 +503,102 @@
 		},
 
 		props: {
-			index: { required: true, type: [Number, null] },
+			index: { type: Number, default: null },
 			effect: { type: String, default: 'swipe' },
 			items: { type: Array, required: true },
 			loop: { type: Boolean, default: true },
 			slideshow: { type: Boolean, default: true },
-			slideshowColorBar: {
-				type: String,
-				default: '#fa4242',
-			},
-			slideshowDuration: {
-				type: Number,
-				default: 3000,
-			},
-			useZoomBar: {
-				type: Boolean,
-				default: false,
-			},
-			closeOnClickOutsideMobile: {
-				type: Boolean,
-				default: false,
-			},
-			srcName: {
-				type: String,
-				default: 'src',
-			},
-			srcSetName: {
-				type: String,
-				default: 'srcset',
-			},
-			srcThumb: {
-				type: String,
-				default: 'thumb',
-			},
-			srcMediaType: {
-				type: String,
-				default: 'mediaType',
-			},
-			overlayColor: {
-				type: String,
-				default: 'rgba(30, 30, 30, .9)',
-			},
-			zIndex: {
-				type: Number,
-				default: 9999,
-			},
-			gallery: {
-				type: Boolean,
-				default: true,
-			},
-			fullScreen: {
-				type: Boolean,
-				default: false,
-			},
-			thumbsPosition: {
-				type: String,
-				default: 'right',
-			},
-			youtubeCookies: {
-				type: Boolean,
-				default: true,
-			},
-			enableWheelEvent: {
-				type: Boolean,
-				default: false,
-			},
-			showCloseButton: {
-				type: Boolean,
-				default: true,
-			},
-			disableZoom: {
-				type: Boolean,
-				default: false,
-			},
-			dir: {
-				type: String,
-				default: 'ltr',
-			},
-			enableScrollLock: {
-				type: Boolean,
-				default: true,
-			},
+			slideshowColorBar: { type: String, default: '#fa4242' },
+			slideshowDuration: { type: Number, default: 3000 },
+			useZoomBar: { type: Boolean, default: false },
+			closeOnClickOutsideMobile: { type: Boolean, default: false },
+			srcName: { type: String, default: 'src' },
+			srcSetName: { type: String, default: 'srcset' },
+			srcThumb: { type: String, default: 'thumb' },
+			srcMediaType: { type: String, default: 'mediaType' },
+			overlayColor: { type: String, default: 'rgba(30, 30, 30, .9)' },
+			zIndex: { type: Number, default: 9999 },
+			gallery: { type: Boolean, default: true },
+			fullScreen: { type: Boolean, default: false },
+			thumbsPosition: { type: String, default: 'right' },
+			youtubeCookies: { type: Boolean, default: true },
+			enableWheelEvent: { type: Boolean, default: false },
+			showCloseButton: { type: Boolean, default: true },
+			disableZoom: { type: Boolean, default: false },
+			dir: { type: String, default: 'ltr' },
+			enableScrollLock: { type: Boolean, default: true },
 			translations: {
 				type: Object,
-				default() {
-					return {
-						previous: 'Previous',
-						next: 'Next',
-						showThumbNails: 'Show thumbnails',
-						playSlideShow: 'Play slideshow',
-						fullScreen: 'Fullscreen',
-						close: 'Close',
-					};
-				},
+				default: () => ({
+					previous: 'Previous',
+					next: 'Next',
+					showThumbNails: 'Show thumbnails',
+					playSlideShow: 'Play slideshow',
+					fullScreen: 'Fullscreen',
+					close: 'Close',
+				}),
 			},
 		},
 
-		data() {
-			return {
-				// swipe data
-				initialMouseX: 0,
-				initialMouseY: 0,
-				endMouseX: 0,
-				endMouseY: 0,
-				swipeType: null,
-				isSwiping: false,
-				isDraggingSwipe: false,
+		emits: ['on-open', 'close', 'on-change', 'on-change-end'],
 
-				// use for mouse wheel
-				prevTime: 0,
+		data: (vnode) => ({
+			// swipe data
+			initialMouseX: 0,
+			initialMouseY: 0,
+			endMouseX: 0,
+			endMouseY: 0,
+			swipeType: null,
+			isSwiping: false,
+			isDraggingSwipe: false,
 
-				// swipe effect
-				xSwipeWrapper: 0,
-				ySwipeWrapper: 0,
-				swipeAnimation: null,
-				swipeInterval: null,
-				lightboxInnerWidth: null,
+			// use for mouse wheel
+			prevTime: 0,
 
-				// styles data
-				imgIndex: this.index,
-				isVisible: false,
-				paddingBottom: false,
-				imageLoading: false,
-				showThumbs: false,
-				isFullScreenMode: false,
+			// swipe effect
+			xSwipeWrapper: 0,
+			ySwipeWrapper: 0,
+			swipeAnimation: null,
+			swipeInterval: null,
+			lightboxInnerWidth: null,
 
-				// aspect ratio videos
-				aspectRatioVideo: {
-					width: 'auto',
-					height: 'auto',
-				},
+			// styles data
+			imgIndex: vnode.$props.index,
+			isVisible: false,
+			paddingBottom: false,
+			imageLoading: false,
+			showThumbs: false,
+			isFullScreenMode: false,
 
-				// props to bind styles
-				buttonsVisible: true,
-				scale: 1,
-				top: 0,
-				left: 0,
-				lastX: 0,
-				lastY: 0,
-				isDraging: false,
-				canZoom: true,
-				isZooming: false,
-				transition: 'all .3s ease',
-				zoomBar: 0,
+			// aspect ratio videos
+			aspectRatioVideo: {
+				width: 'auto',
+				height: 'auto',
+			},
 
-				// slideshow playing data
-				isPlayingSlideShow: false,
-				intervalProgress: null,
-				loopData: false,
-				stylesInterval: {
-					display: 'block',
-				},
-			};
-		},
+			// props to bind styles
+			buttonsVisible: true,
+			scale: 1,
+			top: 0,
+			left: 0,
+			lastX: 0,
+			lastY: 0,
+			isDraging: false,
+			canZoom: true,
+			isZooming: false,
+			transition: 'all .3s ease',
+			zoomBar: 0,
+
+			// slideshow playing data
+			isPlayingSlideShow: false,
+			intervalProgress: null,
+			loopData: false,
+			stylesInterval: {
+				display: 'block',
+			},
+		}),
 
 		computed: {
-
 			// Images wrapper styles to use drag and zoom
 			imgWrapperStyle() {
 				return {
@@ -638,20 +620,6 @@
 				return {
 					'padding-bottom': `${this.paddingBottom}px`,
 				};
-			},
-
-			// get item src
-			itemSrc() {
-				if (this.imgIndex === null) {
-					return false;
-				}
-
-				const item = this.items[this.imgIndex];
-				if (this.checkIfIsObject(this.imgIndex)) {
-					return item[this.srcName];
-				}
-
-				return item;
 			},
 
 			// Lightbox classes
@@ -750,9 +718,6 @@
 			index(prev, val) {
 				const self = this;
 
-				// body scroll lock
-				const $body = document.querySelector('body');
-
 				if (prev !== null) {
 					// swipe type
 					this.swipeType = null;
@@ -830,9 +795,7 @@
 				}
 			},
 
-			imgIndex(prev, val) {
-				const thisContext = this;
-
+			async imgIndex(prev, val) {
 				// when animation is loaded
 				this.$nextTick(() => {
 					if (this.effect === 'swipe') {
@@ -840,31 +803,28 @@
 						this.setXPosition(prev);
 					}
 
-					if (prev !== null & val === null) {
+					if (prev !== null && val === null) {
 						this.$emit('on-open', prev);
 					}
 
 					if (prev !== null) {
 						if (prev !== val) {
+							// eslint-disable-next-line no-autofix/unicorn/no-lonely-if
 							if (!this.getYoutubeUrl(this.getItemSrc(prev)) && !this.getVimeoUrl(this.getItemSrc(prev))) {
 								this.stopVideos();
 							}
 						}
 
 						// if is an image change imageLoading to true
-						if (!this.getVideoUrl(this.getItemSrc(prev))) {
-							if (!this.is_cached(this.getItemSrc(prev))) {
-								this.imageLoading = true;
-							}
+						if (!this.getVideoUrl(this.getItemSrc(prev)) && !this.is_cached(this.getItemSrc(prev))) {
+							this.imageLoading = true;
 						}
 
 						// add caption padding to Lightbox wrapper
 						this.addCaptionPadding();
 
 						// setAspectRatioVideo when is swipe
-						if (this.effect === 'swipe') {
-							this.setAspectRatioVideo();
-						} else if (this.getVideoUrl(this.getItemSrc(prev))) {
+						if (this.effect === 'swipe' || this.getVideoUrl(this.getItemSrc(prev))) {
 							this.setAspectRatioVideo();
 						}
 					}
@@ -899,11 +859,9 @@
 
 			stopVideos() {
 				const videos = document.querySelectorAll('.cool-lightbox-video');
-				const isVideoPlaying = (video) =>
-					!!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 
 				if (videos.length > 0) {
-					Array.prototype.forEach.call(videos, video => {
+					videos.forEach((video) => {
 						const type = video.tagName;
 
 						if (type === 'IFRAME') {
@@ -932,17 +890,21 @@
 					!isMobile
 					&& document.body.scrollHeight > window.innerHeight
 				) {
-					document.querySelectorAll('head')[0].insertAdjacentHTML('beforeend',
-						'<style id="coollightbox-style-noscroll" type="text/css">.compensate-for-scrollbar{margin-right:'
-							+ (window.innerWidth - document.documentElement.clientWidth)
-							+ 'px;}</style>');
+					document.querySelectorAll('head')[0].insertAdjacentHTML(
+						'beforeend',
+						`<style id="coollightbox-style-noscroll" type="text/css">
+							.compensate-for-scrollbar {
+								margin-right: ${(window.innerWidth - document.documentElement.clientWidth)}px;
+							}
+						</style>`,
+					);
 
 					document.body.classList.add('compensate-for-scrollbar');
 				}
 			},
 
 			setAutoplay(itemIndex) {
-				if (this.checkIfIsObject(itemIndex) && this.items[itemIndex].hasOwnProperty('autoplay') && this.items[itemIndex].autoplay) {
+				if (this.checkIfIsObject(itemIndex) && Object.hasOwn(this.items[itemIndex], 'autoplay') && this.items[itemIndex].autoplay) {
 					return true;
 				}
 
@@ -1018,34 +980,34 @@
 
 			// continue swipe event
 			continueSwipe(event) {
-				if (this.isDraggingSwipe) {
-					this.isSwiping = true;
-					const currentPosX = this.getMouseXPosFromEvent(event);
-					const currentPosY = this.getMouseYPosFromEvent(event);
-					const windowWidth = this.lightboxInnerWidth;
+				if (!this.isDraggingSwipe) return;
 
-					// diffs
-					const diffX = Math.abs(currentPosX - this.initialMouseX);
-					const diffY = Math.abs(currentPosY - this.initialMouseY);
+				this.isSwiping = true;
+				const currentPosX = this.getMouseXPosFromEvent(event);
+				const currentPosY = this.getMouseYPosFromEvent(event);
+				const windowWidth = this.lightboxInnerWidth;
 
-					// swipe type
-					if (this.swipeType === null && (diffY > 5 || diffX > 5)) {
-						this.swipeType = diffY > diffX ? 'v' : 'h';
-					}
+				// diffs
+				const diffX = Math.abs(currentPosX - this.initialMouseX);
+				const diffY = Math.abs(currentPosY - this.initialMouseY);
 
-					// swipe
-					if (this.swipeType === 'h') {
-						// swipe wrapper
-						this.xSwipeWrapper = this.dir === 'rtl' ? (windowWidth * this.imgIndex) + currentPosX - this.initialMouseX + 30 * this.imgIndex : -(windowWidth * this.imgIndex) + currentPosX - this.initialMouseX - 30 * this.imgIndex;
-					} else {
-						this.ySwipeWrapper = currentPosY - this.initialMouseY;
-					}
+				// swipe type
+				if (this.swipeType === null && (diffY > 5 || diffX > 5)) {
+					this.swipeType = diffY > diffX ? 'v' : 'h';
+				}
 
-					// mobile caseS
-					if (event.type === 'touchmove') {
-						this.endMouseX = this.getMouseXPosFromEvent(event);
-						this.endMouseY = this.getMouseYPosFromEvent(event);
-					}
+				// swipe
+				if (this.swipeType === 'h') {
+					// swipe wrapper
+					this.xSwipeWrapper = this.dir === 'rtl' ? (windowWidth * this.imgIndex) + currentPosX - this.initialMouseX + 30 * this.imgIndex : -(windowWidth * this.imgIndex) + currentPosX - this.initialMouseX - 30 * this.imgIndex;
+				} else {
+					this.ySwipeWrapper = currentPosY - this.initialMouseY;
+				}
+
+				// mobile caseS
+				if (event.type === 'touchmove') {
+					this.endMouseX = this.getMouseXPosFromEvent(event);
+					this.endMouseY = this.getMouseYPosFromEvent(event);
 				}
 			},
 
@@ -1153,10 +1115,12 @@
 			swipeToRight() {
 				if (!this.hasNext && this.effect === 'swipe') {
 					if (this.dir === 'rtl') {
-						return this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
+						this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
+						return this.xSwipeWrapper;
 					}
 
-					return this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
+					this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
+					return this.xSwipeWrapper;
 				}
 
 				this.changeIndexToNext();
@@ -1200,7 +1164,7 @@
 
 				const youtubeID = this.getYoutubeID(itemUrl);
 				if (youtubeID) {
-					return 'https://img.youtube.com/vi/' + youtubeID + '/mqdefault.jpg';
+					return `https://img.youtube.com/vi/${youtubeID}/mqdefault.jpg`;
 				}
 
 				const vimeoID = this.getVimeoID(itemUrl);
@@ -1430,12 +1394,12 @@
 			handleMouseUp(e) {
 				if (!(e.type === 'touchend' && this.isZooming || e.type === 'mouseup' && this.checkMouseEventPropButton(e.button))) { return; }
 				this.isDraging = false;
-				this.lastX = this.lastY = 0;
+				this.lastX = 0;
+				this.lastY = 0;
 
 				// Fix drag zoom out
-				const thisContext = this;
 				setTimeout(() => {
-					thisContext.canZoom = true;
+					this.canZoom = true;
 				}, 100);
 			},
 
@@ -1443,12 +1407,12 @@
 			handleMouseLeave(e) {
 				if (!(e.type === 'mouseleave' && this.isZooming)) { return; }
 				this.isDraging = false;
-				this.lastX = this.lastY = 0;
+				this.lastX = 0;
+				this.lastY = 0;
 
 				// Fix drag zoom out
-				const thisContext = this;
 				setTimeout(() => {
-					thisContext.canZoom = true;
+					this.canZoom = true;
 				}, 100);
 			},
 
@@ -1456,8 +1420,8 @@
 			handleMouseMove(e) {
 				if (!(e.type === 'touchmove' && this.isZooming || e.type === 'mousemove' && this.checkMouseEventPropButton(e.button))) { return; }
 				if (this.isDraging) {
-					const clientX = (e.type === 'touchmove' ? e.touches[0] : e).clientX;
-					const clientY = (e.type === 'touchmove' ? e.touches[0] : e).clientY;
+					const { clientX } = (e.type === 'touchmove' ? e.touches[0] : e);
+					const { clientY } = (e.type === 'touchmove' ? e.touches[0] : e);
 					this.top = this.top - this.lastY + clientY;
 					this.left = this.left - this.lastX + clientX;
 					this.lastX = clientX;
@@ -1468,7 +1432,7 @@
 						? e.target.parentNode.parentNode
 						: e.target.parentNode;
 					const newZoom = 1.6 + this.zoomBar / 10;
-					item.style.transform = 'translate3d(calc(-50% + ' + this.left + 'px), calc(-50% + ' + this.top + 'px), 0px) scale3d(' + newZoom + ', ' + newZoom + ', ' + newZoom + ')';
+					item.style.transform = `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(${newZoom}, ${newZoom}, ${newZoom})`;
 				}
 				e.stopPropagation();
 			},
@@ -1492,7 +1456,6 @@
 
 				// zoom variables
 				const { isZooming } = this;
-				const thisContext = this;
 
 				// Is zooming check
 				if (isZooming) {
@@ -1516,7 +1479,7 @@
 
 					// fix drag transition problems
 					setTimeout(() => {
-						thisContext.transition = 'all .0s ease';
+						this.transition = 'all .0s ease';
 					}, 100);
 				} else {
 					// show buttons
@@ -1540,7 +1503,9 @@
 					const item = this.effect === 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
 
 					// reset styles
-					item.style.transform = this.disableZoom ? 'translate3d(calc(-50% + ' + this.left + 'px), calc(-50% + ' + this.top + 'px), 0px)' : 'translate3d(calc(-50% + ' + this.left + 'px), calc(-50% + ' + this.top + 'px), 0px) scale3d(1, 1, 1)';
+					item.style.transform = this.disableZoom
+						? `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px)`
+						: `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(1, 1, 1)`;
 
 					this.initialMouseX = 0;
 					if (window.innerWidth >= 700) {
@@ -1551,26 +1516,24 @@
 
 			// Aspect Ratio responsive video
 			setAspectRatioVideo() {
-				const thisContext = this;
-				let el = document.querySelectorAll('.cool-lightbox__inner');
-				el = el[0];
+				const el = document.querySelectorAll('.cool-lightbox__inner')[0];
 
-				let computedStyle = getComputedStyle(el);
+				const computedStyle = getComputedStyle(el);
 				if (window.innerWidth < 1440) {
-					let width = el.clientWidth;
-					let height = Math.round((width / 16) * 9);
+					const width = el.clientWidth;
+					const height = Math.round((width / 16) * 9);
 
-					this.aspectRatioVideo.height = height + 'px';
-					this.aspectRatioVideo.width = width + 'px';
+					this.aspectRatioVideo.height = `${height}px`;
+					this.aspectRatioVideo.width = `${width}px`;
 				} else {
 					setTimeout(() => {
 						let height = el.clientHeight;
 						height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
 
-						let width = (height / 9) * 16;
+						const width = (height / 9) * 16;
 
-						thisContext.aspectRatioVideo.height = height + 'px';
-						thisContext.aspectRatioVideo.width = width + 'px';
+						this.aspectRatioVideo.height = `${height}px`;
+						this.aspectRatioVideo.width = `${width}px`;
 					}, 150);
 				}
 			},
@@ -1587,7 +1550,7 @@
 			wheelEvent(event) {
 				const delay = 350;
 				const currentTime = Date.now();
-				let direction = event.deltaY > 0 ? 'top' : 'down';
+				const direction = event.deltaY > 0 ? 'top' : 'down';
 
 				if (currentTime - this.prevTime < delay) return;
 
@@ -1675,11 +1638,8 @@
 			changeIndexToNext() {
 				if (this.hasNext) {
 					this.onIndexChange(this.imgIndex + 1);
-				} else {
-					// only if has loop prop
-					if (this.loopData) {
-						this.onIndexChange(0);
-					}
+				} else if (this.loopData) {
+					this.onIndexChange(0);
 				}
 			},
 
@@ -1687,11 +1647,8 @@
 			changeIndexToPrev() {
 				if (this.hasPrevious) {
 					this.onIndexChange(this.imgIndex - 1);
-				} else {
-					// only if has loop prop
-					if (this.loopData) {
-						this.onIndexChange(this.items.length - 1);
-					}
+				} else if (this.loopData) {
+					this.onIndexChange(this.items.length - 1);
 				}
 			},
 
@@ -1740,7 +1697,11 @@
 
 			// caption size
 			addCaptionPadding() {
-				if (this.checkIfIsObject(this.imgIndex) && (this.items[this.imgIndex].title || this.items[this.imgIndex].descripcion)) {
+				if (
+					this.checkIfIsObject(this.imgIndex)
+					&& (this.items[this.imgIndex].title)
+					|| this.items[this.imgIndex].descripcion
+				) {
 					const el = document.querySelectorAll('.cool-lightbox-caption');
 					if (el.length > 0) {
 						this.paddingBottom = el[0].offsetHeight;
@@ -1787,7 +1748,7 @@
 			getYoutubeID(url) {
 				// youtube data
 				const youtubeRegex = /^(?:https?:\/\/)?(?:w{3}\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))(([\w\-]){11})\S*$/;
-				const ytId = (url.match(youtubeRegex)) ? RegExp.$1 : false;
+				const ytId = url.match(youtubeRegex)?.[1] ?? false;
 
 				if (ytId) {
 					return ytId;
@@ -1805,10 +1766,10 @@
 				if (ytId) {
 					// check if allows youtube cookies
 					if (this.youtubeCookies) {
-						return 'https://www.youtube.com/embed/' + ytId;
+						return `https://www.youtube.com/embed/${ytId}`;
 					}
 
-					return 'https://www.youtube-nocookie.com/embed/' + ytId;
+					return `https://www.youtube-nocookie.com/embed/${ytId}`;
 				}
 
 				return false;
@@ -1817,6 +1778,7 @@
 			// vimeo ID
 			getVimeoID(url) {
 				// if is vimeo video
+				// eslint-disable-next-line regexp/optimal-quantifier-concatenation
 				const result = url.match(/(?:w{3}\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/[^/]*\/videos\/|album\/\d+\/video\/|video\/)?(\d+)[\w\-]*/i);
 				if (result !== null) {
 					return result[1];
@@ -1828,9 +1790,10 @@
 			// get vimeo url
 			getVimeoUrl(url) {
 				// if is vimeo video
+				// eslint-disable-next-line regexp/optimal-quantifier-concatenation
 				const result = url.match(/(?:w{3}\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/[^/]*\/videos\/|album\/\d+\/video\/|video\/)?(\d+)[\w\-]*/i);
 				if (result !== null) {
-					return '//player.vimeo.com/video/' + result[1] + '?hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1';
+					return `//player.vimeo.com/video/${result[1]}?hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1`;
 				}
 
 				return false;

@@ -14,7 +14,7 @@ const setLoadListeners = (el) => {
 	el.addEventListener('load', () => {
 		setTimeout(() => el.classList.add('loaded'), 100);
 	});
-	el.addEventListener('error', () => console.log('error'));
+	el.addEventListener('error', () => console.error('Error while loading the resource'));
 };
 
 const findChild = (parent, nodeName) => {

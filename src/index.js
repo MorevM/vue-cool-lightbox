@@ -1,3 +1,4 @@
+/* global global */
 import CoolLightBox from './components/cool-light-box.vue';
 
 const install = (Vue) => {

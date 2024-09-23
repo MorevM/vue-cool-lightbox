@@ -1,13 +1,9 @@
 const isYoutubeVideo = (url) => {
 	// youtube data
 	const youtubeRegex = /^(?:https?:\/\/)?(?:w{3}\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))(([\w\-]){11})\S*$/;
-	const ytId = (url.match(youtubeRegex)) ? RegExp.$1 : false;
+	const ytId = url.match(youtubeRegex)?.[0] ?? false;
 
-	if (ytId) {
-		return true;
-	}
-
-	return false;
+	return !!ytId;
 };
 
 export default {
@@ -58,10 +54,6 @@ export default {
 			observer.observe(el);
 		};
 
-		if (window.IntersectionObserver) {
-			createObserver();
-		} else {
-			// loadImage(); // Smth missed in the original repo
-		}
+		window.IntersectionObserver && createObserver();
 	},
 };
