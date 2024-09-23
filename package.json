@@ -1,9 +1,9 @@
 {
 	"name": "vue-cool-lightbox",
 	"description": "A pretty Vue.js component to display an image gallery lightbox inspired by fancybox",
+	"type": "module",
 	"version": "2.7.5",
 	"private": false,
-	"type": "module",
 	"license": "MIT",
 	"author": "Lucas Pulliese <lucaspulliese10@gmail.com>",
 	"homepage": "https://vue-cool-lightbox.lucaspulliese.com",
@@ -29,19 +29,15 @@
 		"*.json",
 		"*.js"
 	],
-	"main": "dist/vue-cool-lightbox.umd.js",
+	"main": "dist/vue-cool-lightbox.cjs",
 	"module": "dist/vue-cool-lightbox.esm.js",
 	"browser": {
 		"./sfc": "src/components/vue-cool-lightbox.vue"
 	},
-	"unpkg": "dist/vue-cool-lightbox.min.js",
+	"unpkg": "dist/vue-cool-lightbox.umd.js",
 	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "npm run build:unpkg & npm run build:es & npm run build:umd",
-		"build:demo": "vue-cli-service build --dest build",
-		"build:umd": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format umd --file dist/vue-cool-lightbox.umd.js",
-		"build:es": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format es --file dist/vue-cool-lightbox.esm.js",
-		"build:unpkg": "cross-env NODE_ENV=production rollup --config build-scripts/rollup.config.js --format iife --file dist/vue-cool-lightbox.min.js",
+		"dev": "vite --config vite.config.dev.js",
+		"build": "vite build --config vite.config.build.js",
 		"lint:eslint": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\"",
 		"lint:eslint:fix": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\" --fix",
 		"lint": "yarn lint:eslint",
@@ -57,17 +53,11 @@
 		"sass": "^1.79.2",
 		"sass-loader": "^8.0.0",
 		"terser": "^5.33.0",
+		"typescript": "^5.6.2",
 		"vite": "^5.4.7",
+		"vite-plugin-require": "^1.2.14",
 		"vite-plugin-vue2": "^2.0.3",
-		"vue": "^2"
-	},
-	"postcss": {
-		"plugins": {
-			"autoprefixer": {}
-		}
-	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions"
-	]
+		"vue": "^2",
+		"vue-template-compiler": "^2"
+	}
 }
