@@ -39,14 +39,17 @@
 		"lint:eslint": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\"",
 		"lint:eslint:fix": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\" --fix",
 		"lint": "yarn lint:eslint",
-		"lint:fix": "yarn lint:eslint:fix"
+		"lint:fix": "yarn lint:eslint:fix",
+		"release": "release-it --disable-metrics"
 	},
 	"dependencies": {
 		"body-scroll-lock": "^3.1.5"
 	},
 	"devDependencies": {
 		"@morev/eslint-config": "^34.0.0",
+		"@release-it/conventional-changelog": "^8.0.2",
 		"eslint": "8.57.1",
+		"release-it": "^17.6.0",
 		"sass": "^1.79.2",
 		"sass-loader": "^8.0.0",
 		"terser": "^5.33.0",
