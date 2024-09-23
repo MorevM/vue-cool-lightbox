@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-useless-v-bind -- For some reason `poster=""` transforms into "poster="require('')" in the production code " -->
 <!-- eslint-disable vue/max-len -- Mostly SVG's limitation -->
 <template>
 	<transition name="cool-lightbox-modal">
@@ -195,8 +196,7 @@
 								class="cool-lightbox-video"
 								controls=""
 								controlslist="nodownload"
-								poster=""
-								l
+								:poster="''"
 								:data-autoplay="setAutoplay(itemIndex)"
 								:style="aspectRatioVideo"
 							>
@@ -318,7 +318,7 @@
 										class="cool-lightbox-video"
 										controls=""
 										controlslist="nodownload"
-										poster=""
+										:poster="''"
 										:data-autoplay="setAutoplay(imgIndex)"
 										:style="aspectRatioVideo"
 									>
