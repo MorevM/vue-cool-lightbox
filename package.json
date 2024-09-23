@@ -1,18 +1,17 @@
 {
-	"name": "vue-cool-lightbox",
-	"description": "A pretty Vue.js component to display an image gallery lightbox inspired by fancybox",
+	"name": "@morev/vue-cool-lightbox",
+	"description": "A fork of pretty Vue.js component to display an image gallery lightbox inspired by fancybox with VK Video support",
 	"type": "module",
-	"version": "2.7.5",
+	"version": "1.0.0",
 	"private": false,
 	"license": "MIT",
 	"author": "Lucas Pulliese <lucaspulliese10@gmail.com>",
-	"homepage": "https://vue-cool-lightbox.lucaspulliese.com",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/lucaspulliese/vue-cool-lightbox"
+		"url": "https://github.com/morevm/vue-cool-lightbox"
 	},
 	"bugs": {
-		"url": "https://github.com/lucaspulliese/vue-cool-lightbox/issues"
+		"url": "https://github.com/morevm/vue-cool-lightbox/issues"
 	},
 	"keywords": [
 		"vue",
@@ -25,9 +24,15 @@
 	"files": [
 		"dist"
 	],
-	"main": "dist/vue-cool-lightbox.cjs",
-	"module": "dist/vue-cool-lightbox.esm.js",
-	"unpkg": "dist/vue-cool-lightbox.umd.js",
+	"exports": {
+		".": {
+			"import": "./dist/vue-cool-lightbox.esm.js",
+			"require": "./dist/vue-cool-lightbox.cjs"
+		},
+		"./styles": "./dist/vue-cool-lightbox.min.css"
+	},
+	"main": "./dist/vue-cool-lightbox.cjs",
+	"module": "./dist/vue-cool-lightbox.esm.js",
 	"scripts": {
 		"dev": "vite --config vite.config.dev.js",
 		"build": "vite build --config vite.config.build.js",

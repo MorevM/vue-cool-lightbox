@@ -1,3 +1,9 @@
+<!-- eslint-disable markdownlint/md025 -->
+
+# A slightly rewritten fork of the original package with VK Video support
+
+> The content below is unchanged except for the name of the package
+
 # No longer maintained
 
 Seeing that Vue 3 came out and I don't have more time to maintain it, I think it's a good time to archive it.
@@ -14,7 +20,7 @@ Vue-cool-lightbox is a pretty Vue.js lightbox component, inspired by [fancybox](
 Use npm to install vue-cool-lightbox.
 
 ```bash
-npm install --save vue-cool-lightbox
+npm install --save @morev/vue-cool-lightbox
 ```
 
 and use the lightbox:
