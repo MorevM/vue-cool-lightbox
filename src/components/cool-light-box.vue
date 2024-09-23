@@ -810,7 +810,11 @@
 					if (prev !== null) {
 						if (prev !== val) {
 							// eslint-disable-next-line no-autofix/unicorn/no-lonely-if
-							if (!this.getYoutubeUrl(this.getItemSrc(prev)) && !this.getVimeoUrl(this.getItemSrc(prev))) {
+							if (
+								!this.getYoutubeUrl(this.getItemSrc(prev))
+								&& !this.getVimeoUrl(this.getItemSrc(prev))
+								&& !this.getVkVideoUrl(this.getItemSrc(prev))
+							) {
 								this.stopVideos();
 							}
 						}
@@ -1725,9 +1729,14 @@
 
 			// check if is video
 			getVideoUrl(itemSrc) {
+				const vkVideoUrl = this.getVkVideoUrl(itemSrc);
 				const youtubeUrl = this.getYoutubeUrl(itemSrc);
 				const vimeoUrl = this.getVimeoUrl(itemSrc);
 				const mp4Url = this.checkIsMp4(itemSrc);
+
+				if (vkVideoUrl) {
+					return vkVideoUrl;
+				}
 
 				if (youtubeUrl) {
 					return youtubeUrl;
@@ -1742,6 +1751,21 @@
 				}
 
 				return false;
+			},
+
+			getVkVideoUrl(itemSrc) {
+				const directRegex = /https:\/\/vk\..*\/video-(\d+)_(\d+)/;
+				const personalRegex = /https:\/\/vk\..*\/video\/@.*\?z=video-(\d+)_(\d+)/;
+
+				const directMatch = itemSrc.match(directRegex);
+				const personalMatch = itemSrc.match(personalRegex);
+
+				const source = directMatch || personalMatch || [null, null, null];
+				const [_, oid, id] = source;
+
+				if (!oid || !id) return false;
+
+				return `https://vk.ru/video_ext.php?oid=-${oid}&id=${id}&hd=2`;
 			},
 
 			// getYoutube ID
