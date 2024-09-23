@@ -1,3 +1,7 @@
+## [1.1.1](https://github.com/morevm/vue-cool-lightbox/compare/v1.1.0...v1.1.1) (2024-09-23)
+
+No changes, just forcing the creation of a release.
+
 ## 1.1.0 (2024-09-23)
 
 ### Features
