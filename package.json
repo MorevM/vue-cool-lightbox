@@ -44,8 +44,7 @@
 		"lint:fix": "yarn lint:eslint:fix"
 	},
 	"dependencies": {
-		"body-scroll-lock": "^3.1.5",
-		"plyr": "^3.6.7"
+		"body-scroll-lock": "^3.1.5"
 	},
 	"devDependencies": {
 		"@morev/eslint-config": "^34.0.0",
