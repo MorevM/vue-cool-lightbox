@@ -1,3 +1,13 @@
+
+
+## [1.2.0](https://github.com/morevm/vue-cool-lightbox/compare/v1.1.1...v1.2.0) (2024-10-14)
+
+
+### Features
+
+* Add Boomstream support ([fa0cb76](https://github.com/morevm/vue-cool-lightbox/commit/fa0cb763a110dee117f47944dd7367cb8cc3b4fc))
+
+
 ## [1.1.1](https://github.com/morevm/vue-cool-lightbox/compare/v1.1.0...v1.1.1) (2024-09-23)
 
 No changes, just forcing the creation of a release.
