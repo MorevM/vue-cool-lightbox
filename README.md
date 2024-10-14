@@ -1,6 +1,6 @@
 <!-- eslint-disable markdownlint/md025 -->
 
-# A slightly rewritten fork of the original package with VK Video support
+# A slightly rewritten fork of the original package with VK Video and Boomstream support
 
 > The content below is unchanged except for the name of the package
 

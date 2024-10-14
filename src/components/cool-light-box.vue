@@ -814,6 +814,7 @@
 								!this.getYoutubeUrl(this.getItemSrc(prev))
 								&& !this.getVimeoUrl(this.getItemSrc(prev))
 								&& !this.getVkVideoUrl(this.getItemSrc(prev))
+								&& !this.getBoomstreamUrl(this.getItemSrc(prev))
 							) {
 								this.stopVideos();
 							}
@@ -1730,12 +1731,17 @@
 			// check if is video
 			getVideoUrl(itemSrc) {
 				const vkVideoUrl = this.getVkVideoUrl(itemSrc);
+				const boomstreamUrl = this.getBoomstreamUrl(itemSrc);
 				const youtubeUrl = this.getYoutubeUrl(itemSrc);
 				const vimeoUrl = this.getVimeoUrl(itemSrc);
 				const mp4Url = this.checkIsMp4(itemSrc);
 
 				if (vkVideoUrl) {
 					return vkVideoUrl;
+				}
+
+				if (boomstreamUrl) {
+					return boomstreamUrl;
 				}
 
 				if (youtubeUrl) {
@@ -1766,6 +1772,12 @@
 				if (!oid || !id) return false;
 
 				return `https://vk.ru/video_ext.php?oid=-${oid}&id=${id}&hd=2`;
+			},
+
+			getBoomstreamUrl(itemSrc) {
+				return itemSrc.startsWith('https://play.boomstream.com')
+					? itemSrc
+					: false;
 			},
 
 			// getYoutube ID

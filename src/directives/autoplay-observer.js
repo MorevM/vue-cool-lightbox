@@ -6,6 +6,8 @@ const isYoutubeVideo = (url) => {
 	return !!ytId;
 };
 
+const isBoomstreamVideo = (url) => url.startsWith('https://play.boomstream.com');
+
 export default {
 	inserted: (el) => {
 		const autoplayVideo = () => {
@@ -28,9 +30,13 @@ export default {
 					muted = 'mute';
 				}
 
+				const autoplayParameterName = isBoomstreamVideo(el.src)
+					? 'autostart'
+					: 'autoplay';
+
 				// append autoplay
 				url.searchParams.append(muted, 1);
-				url.searchParams.append('autoplay', 1);
+				url.searchParams.append(autoplayParameterName, 1);
 
 				el.src = url.href;
 			}

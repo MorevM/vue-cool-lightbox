@@ -42,6 +42,10 @@
 					{
 						src: 'https://vk.ru/video/@volhovec_official?z=video-130940568_456239045%2Fclub130940568',
 					},
+					{
+						src: 'https://play.boomstream.com/oUY6fsRa',
+						autoplay: true,
+					},
 				],
 				index: null,
 			};
