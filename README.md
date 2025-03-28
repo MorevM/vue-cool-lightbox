@@ -27,7 +27,7 @@ and use the lightbox:
 
 ```javascript
 import CoolLightBox from 'vue-cool-lightbox'
-import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
+import "vue-cool-lightbox/styles"
 
 export default {
   components: {
