@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '20'
           cache: yarn
-          scope: '@morev'
+          scope: '@jackhuynh1995'
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies

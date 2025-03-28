@@ -20,7 +20,7 @@ Vue-cool-lightbox is a pretty Vue.js lightbox component, inspired by [fancybox](
 Use npm to install vue-cool-lightbox.
 
 ```bash
-npm install --save @morev/vue-cool-lightbox
+npm install --save @jackhuynh1995/vue-cool-lightbox
 ```
 
 and use the lightbox:
