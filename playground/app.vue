@@ -20,42 +20,42 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+	import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'app',
-  components: {},
+	export default defineComponent({
+		name: 'app',
+		components: {},
 
-  data() {
+		data() {
 			return {
-          items: [
-              {
-                  title: 'Rocky mountain under blue and white sky',
-                  description: 'Photo by Guillaume Briard',
-                  src: 'https://www.cheatsheet.com/wp-content/uploads/2019/04/Planet-Earth.jpg',
-              },
-              // {
-              //     src: 'https://www.youtube.com/watch?v=f7N0yns4CAU',
-              //     autoplay: true,
-              // },
-              // {
-              //     src: 'https://vk.ru/video-130940568_456239281',
-              //     autoplay: true,
-              // },
-              // {
-              //     src: 'https://vk.ru/video/@volhovec_official?z=video-130940568_456239045%2Fclub130940568',
-              // },
-              // {
-              //     src: 'https://play.boomstream.com/oUY6fsRa',
-              //     autoplay: true,
-              // },
-          ],
-          index: null,
+				items: [
+					{
+						title: 'Rocky mountain under blue and white sky',
+						description: 'Photo by Guillaume Briard',
+						src: 'https://www.cheatsheet.com/wp-content/uploads/2019/04/Planet-Earth.jpg',
+					},
+					// {
+					//     src: 'https://www.youtube.com/watch?v=f7N0yns4CAU',
+					//     autoplay: true,
+					// },
+					// {
+					//     src: 'https://vk.ru/video-130940568_456239281',
+					//     autoplay: true,
+					// },
+					// {
+					//     src: 'https://vk.ru/video/@volhovec_official?z=video-130940568_456239045%2Fclub130940568',
+					// },
+					// {
+					//     src: 'https://play.boomstream.com/oUY6fsRa',
+					//     autoplay: true,
+					// },
+				],
+				index: null,
 			};
-  },
+		},
 
-  methods: {},
-});
+		methods: {},
+	});
 </script>
 
 <style>

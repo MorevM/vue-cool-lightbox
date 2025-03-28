@@ -2,13 +2,13 @@ import CoolLightBox from './components/cool-light-box.vue';
 
 // Define the install method for Vue 3 plugins
 const install = (app) => {
-    if (install.installed) return;
-    install.installed = true;
-    app.component('CoolLightBox', CoolLightBox); // Register the component globally
+	if (install.installed) return;
+	install.installed = true;
+	app.component('CoolLightBox', CoolLightBox); // Register the component globally
 };
 
 const plugin = {
-    install,
+	install,
 };
 
 export default plugin;

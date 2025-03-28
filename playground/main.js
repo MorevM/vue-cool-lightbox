@@ -1,4 +1,6 @@
-import { createApp } from 'vue'; // Import createApp from Vue 3
+import { createApp } from 'vue';
+
+// Import createApp from Vue 3
 import VueCoolLightboxPlugin from '../src/index.js';
 import App from './app.vue';
 

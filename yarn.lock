@@ -463,9 +463,9 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@morev/eslint-config@^34.0.0":
+"@jackhuynh1995/eslint-config@^34.0.0":
   version "34.0.0"
-  resolved "https://registry.yarnpkg.com/@morev/eslint-config/-/eslint-config-34.0.0.tgz#f269e741cde8fc56b3a2d256252922a19c3f1bcd"
+  resolved "https://registry.yarnpkg.com/@jackhuynh1995/eslint-config/-/eslint-config-34.0.0.tgz#f269e741cde8fc56b3a2d256252922a19c3f1bcd"
   integrity sha512-YIV9nxlLbq/58E+JsSvzsfS5a8xw/03Twr8Mz2LTaeUens45e8RFP7qhED9pXz/Evr3QdSpAsy6DL4XM04QemQ==
   dependencies:
     "@babel/core" "^7.25.2"

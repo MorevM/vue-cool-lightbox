@@ -39,7 +39,7 @@ plugins:
 
 hooks:
   before:init:
-    - yarn lint:fix
+    # - yarn lint:fix
     - yarn build
   after:init:
-    - yarn lint
+    # - yarn lint

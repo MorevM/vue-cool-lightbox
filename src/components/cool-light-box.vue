@@ -165,50 +165,50 @@
 						<!-- /imgs-slide -->
 
 						<template v-else>
-                            <div key="video" class="cool-lightbox__iframe">
-                                <iframe
-                                    v-if="(!checkIsMp4(getItemSrc(itemIndex)) && getMediaType(itemIndex) === 'video')"
-                                    v-autoplayObserver
-                                    :key="itemIndex"
-                                    class="cool-lightbox-video"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                    :data-autoplay="setAutoplay(itemIndex)"
-                                    :src="getVideoUrl(getItemSrc(itemIndex))"
-                                    :style="aspectRatioVideo"
-                                >
-                                </iframe>
+							<div key="video" class="cool-lightbox__iframe">
+								<iframe
+									v-if="(!checkIsMp4(getItemSrc(itemIndex)) && getMediaType(itemIndex) === 'video')"
+									v-autoplayObserver
+									:key="itemIndex"
+									class="cool-lightbox-video"
+									frameborder="0"
+									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+									allowfullscreen
+									:data-autoplay="setAutoplay(itemIndex)"
+									:src="getVideoUrl(getItemSrc(itemIndex))"
+									:style="aspectRatioVideo"
+								>
+								</iframe>
 
-                                <iframe
-                                    v-if="(getMediaType(itemIndex) === 'iframe') || (getPDFurl(getItemSrc(itemIndex)))"
-                                    :key="itemIndex"
-                                    class="cool-lightbox-pdf"
-                                    frameborder="0"
-                                    allowfullscreen
-                                    :src="getItemSrc(itemIndex)"
-                                >
-                                </iframe>
+								<iframe
+									v-if="(getMediaType(itemIndex) === 'iframe') || (getPDFurl(getItemSrc(itemIndex)))"
+									:key="itemIndex"
+									class="cool-lightbox-pdf"
+									frameborder="0"
+									allowfullscreen
+									:src="getItemSrc(itemIndex)"
+								>
+								</iframe>
 
-                                <video
-                                    v-if="checkIsMp4(getItemSrc(itemIndex)) || getMediaType(itemIndex) === 'webVideo'"
-                                    v-autoplayObserver
-                                    :key="checkIsMp4(getItemSrc(itemIndex))"
-                                    class="cool-lightbox-video"
-                                    controls=""
-                                    controlslist="nodownload"
-                                    :poster="''"
-                                    :data-autoplay="setAutoplay(itemIndex)"
-                                    :style="aspectRatioVideo"
-                                >
-                                    <source
-                                        :src="checkIsMp4(getItemSrc(itemIndex))"
-                                        :type="'video/' + (getVideoExt(getItemSrc(itemIndex)) ? getVideoExt(getItemSrc(itemIndex)) : getExtFromItem(itemIndex))"
-                                    />
-                                    <!-- eslint-disable-line vue/no-bare-strings-in-template -->
-                                    Sorry, your browser doesn't support embedded videos
-                                </video>
-                            </div>
+								<video
+									v-if="checkIsMp4(getItemSrc(itemIndex)) || getMediaType(itemIndex) === 'webVideo'"
+									v-autoplayObserver
+									:key="checkIsMp4(getItemSrc(itemIndex))"
+									class="cool-lightbox-video"
+									controls=""
+									controlslist="nodownload"
+									:poster="''"
+									:data-autoplay="setAutoplay(itemIndex)"
+									:style="aspectRatioVideo"
+								>
+									<source
+										:src="checkIsMp4(getItemSrc(itemIndex))"
+										:type="'video/' + (getVideoExt(getItemSrc(itemIndex)) ? getVideoExt(getItemSrc(itemIndex)) : getExtFromItem(itemIndex))"
+									/>
+									<!-- eslint-disable-line vue/no-bare-strings-in-template -->
+									Sorry, your browser doesn't support embedded videos
+								</video>
+							</div>
 						</template>
 						<!-- /cool-lightbox__iframe -->
 					</div>
@@ -287,56 +287,56 @@
 							</div>
 							<!-- /imgs-slide -->
 
-                            <template v-else>
-                                <div key="video" class="cool-lightbox__iframe">
-                                    <transition name="cool-lightbox-slide-change" mode="out-in">
-                                        <template>
-                                        <iframe
-                                            v-if="(!checkIsMp4(getItemSrc(imgIndex)) && getMediaType(imgIndex) === 'video')"
-                                            v-autoplayObserver
-                                            :key="getVideoUrl(getItemSrc(imgIndex))"
-                                            class="cool-lightbox-video"
-                                            frameborder="0"
-                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen
-                                            :data-autoplay="setAutoplay(imgIndex)"
-                                            :src="getVideoUrl(getItemSrc(imgIndex))"
-                                            :style="aspectRatioVideo"
-                                        >
-                                        </iframe>
-    
-                                        <iframe
-                                            v-if="(getMediaType(imgIndex) === 'iframe') || (getPDFurl(getItemSrc(imgIndex)))"
-                                            :key="imgIndex"
-                                            class="cool-lightbox-pdf"
-                                            frameborder="0"
-                                            allowfullscreen
-                                            :src="getItemSrc(imgIndex)"
-                                        >
-                                        </iframe>
-    
-                                        <video
-                                            v-if="checkIsMp4(getItemSrc(imgIndex)) || getMediaType(imgIndex) === 'webVideo'"
-                                            v-autoplayObserver
-                                            :key="checkIsMp4(getItemSrc(imgIndex))"
-                                            class="cool-lightbox-video"
-                                            controls=""
-                                            controlslist="nodownload"
-                                            :poster="''"
-                                            :data-autoplay="setAutoplay(imgIndex)"
-                                            :style="aspectRatioVideo"
-                                        >
-                                            <source
-                                                :src="checkIsMp4(getItemSrc(imgIndex))"
-                                                :type="'video/' + (getVideoExt(getItemSrc(imgIndex)) ? getVideoExt(getItemSrc(imgIndex)) : getExtFromItem(imgIndex))"
-                                            />
-                                            <!-- eslint-disable-line vue/no-bare-strings-in-template -->
-                                            Sorry, your browser doesn't support embedded videos
-                                        </video>
-                                        </template>
-                                    </transition>
-                                </div>
-                            </template>
+							<template v-else>
+								<div key="video" class="cool-lightbox__iframe">
+									<transition name="cool-lightbox-slide-change" mode="out-in">
+										<template>
+											<iframe
+												v-if="(!checkIsMp4(getItemSrc(imgIndex)) && getMediaType(imgIndex) === 'video')"
+												v-autoplayObserver
+												:key="getVideoUrl(getItemSrc(imgIndex))"
+												class="cool-lightbox-video"
+												frameborder="0"
+												allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+												allowfullscreen
+												:data-autoplay="setAutoplay(imgIndex)"
+												:src="getVideoUrl(getItemSrc(imgIndex))"
+												:style="aspectRatioVideo"
+											>
+											</iframe>
+
+											<iframe
+												v-if="(getMediaType(imgIndex) === 'iframe') || (getPDFurl(getItemSrc(imgIndex)))"
+												:key="imgIndex"
+												class="cool-lightbox-pdf"
+												frameborder="0"
+												allowfullscreen
+												:src="getItemSrc(imgIndex)"
+											>
+											</iframe>
+
+											<video
+												v-if="checkIsMp4(getItemSrc(imgIndex)) || getMediaType(imgIndex) === 'webVideo'"
+												v-autoplayObserver
+												:key="checkIsMp4(getItemSrc(imgIndex))"
+												class="cool-lightbox-video"
+												controls=""
+												controlslist="nodownload"
+												:poster="''"
+												:data-autoplay="setAutoplay(imgIndex)"
+												:style="aspectRatioVideo"
+											>
+												<source
+													:src="checkIsMp4(getItemSrc(imgIndex))"
+													:type="'video/' + (getVideoExt(getItemSrc(imgIndex)) ? getVideoExt(getItemSrc(imgIndex)) : getExtFromItem(imgIndex))"
+												/>
+												<!-- eslint-disable-line vue/no-bare-strings-in-template -->
+												Sorry, your browser doesn't support embedded videos
+											</video>
+										</template>
+									</transition>
+								</div>
+							</template>
 							<!-- /cool-lightbox__iframe -->
 						</transition>
 					</div>
@@ -491,27 +491,27 @@
 </template>
 
 <script>
-import { defineComponent, nextTick } from 'vue';
+	import { defineComponent, nextTick } from 'vue';
 
-/* eslint-disable no-autofix/vue/no-boolean-default -- Do not want breaking change */
-/* eslint-disable @stylistic/js/no-mixed-operators -- Way too long to fix */
+	/* eslint-disable no-autofix/vue/no-boolean-default -- Do not want breaking change */
+	/* eslint-disable @stylistic/js/no-mixed-operators -- Way too long to fix */
 
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import LazyLoadDirective from '../directives/lazy-load.js';
-import AutoplayObserver from '../directives/autoplay-observer.js';
+	import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+	import LazyLoadDirective from '../directives/lazy-load.js';
+	import AutoplayObserver from '../directives/autoplay-observer.js';
 
-const isVideoPlaying = (video) =>
+	const isVideoPlaying = (video) =>
 		!!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
 
-export default defineComponent({
-  name: 'cool-light-box',
+	export default defineComponent({
+		name: 'cool-light-box',
 
-  directives: {
+		directives: {
 			lazyload: LazyLoadDirective,
 			autoplayObserver: AutoplayObserver,
-  },
+		},
 
-  props: {
+		props: {
 			index: { type: Number, default: null },
 			effect: { type: String, default: 'swipe' },
 			items: { type: Array, required: true },
@@ -537,21 +537,21 @@ export default defineComponent({
 			dir: { type: String, default: 'ltr' },
 			enableScrollLock: { type: Boolean, default: true },
 			translations: {
-          type: Object,
-          default: () => ({
-              previous: 'Previous',
-              next: 'Next',
-              showThumbNails: 'Show thumbnails',
-              playSlideShow: 'Play slideshow',
-              fullScreen: 'Fullscreen',
-              close: 'Close',
-          }),
+				type: Object,
+				default: () => ({
+					previous: 'Previous',
+					next: 'Next',
+					showThumbNails: 'Show thumbnails',
+					playSlideShow: 'Play slideshow',
+					fullScreen: 'Fullscreen',
+					close: 'Close',
+				}),
 			},
-  },
+		},
 
-  emits: ['on-open', 'close', 'on-change', 'on-change-end'],
+		emits: ['on-open', 'close', 'on-change', 'on-change-end'],
 
-  data: (vnode) => ({
+		data: (vnode) => ({
 			// swipe data
 			initialMouseX: 0,
 			initialMouseY: 0,
@@ -581,8 +581,8 @@ export default defineComponent({
 
 			// aspect ratio videos
 			aspectRatioVideo: {
-          width: 'auto',
-          height: 'auto',
+				width: 'auto',
+				height: 'auto',
 			},
 
 			// props to bind styles
@@ -603,1337 +603,1337 @@ export default defineComponent({
 			intervalProgress: null,
 			loopData: false,
 			stylesInterval: {
-          display: 'block',
+				display: 'block',
 			},
-  }),
+		}),
 
-  computed: {
+		computed: {
 			// Images wrapper styles to use drag and zoom
 			imgWrapperStyle() {
-          return {
-              top: '50%',
-              left: '50%',
-              transition: this.transition,
-          };
+				return {
+					top: '50%',
+					left: '50%',
+					transition: this.transition,
+				};
 			},
 
 			// lightbox styles
 			lightboxStyles() {
-          return {
-              'z-index': this.zIndex,
-              'background-color': this.overlayColor,
-          };
+				return {
+					'z-index': this.zIndex,
+					'background-color': this.overlayColor,
+				};
 			},
 
 			innerStyles() {
-          return {
-              'padding-bottom': `${this.paddingBottom}px`,
-          };
+				return {
+					'padding-bottom': `${this.paddingBottom}px`,
+				};
 			},
 
 			// Lightbox classes
 			lightboxClasses() {
-          const classesReturn = [
-              { 'cool-lightbox--can-zoom': this.canZoom && !this.disableZoom },
-              { 'cool-lightbox--zoom-disabled': this.disableZoom },
-              { 'cool-lightbox--is-zooming': this.isZooming },
-              { 'cool-lightbox--show-thumbs': this.showThumbs },
-              { 'cool-lightbox--is-swipping': this.isDraggingSwipe },
-          ];
+				const classesReturn = [
+					{ 'cool-lightbox--can-zoom': this.canZoom && !this.disableZoom },
+					{ 'cool-lightbox--zoom-disabled': this.disableZoom },
+					{ 'cool-lightbox--is-zooming': this.isZooming },
+					{ 'cool-lightbox--show-thumbs': this.showThumbs },
+					{ 'cool-lightbox--is-swipping': this.isDraggingSwipe },
+				];
 
-          const classString = `cool-lightbox--thumbs-${this.thumbsPosition}`;
-          classesReturn.push(classString);
+				const classString = `cool-lightbox--thumbs-${this.thumbsPosition}`;
+				classesReturn.push(classString);
 
-          return classesReturn;
+				return classesReturn;
 			},
 
 			// Buttons classes
 			buttonsClasses() {
-          return {
-              hidden: !this.buttonsVisible,
-          };
+				return {
+					hidden: !this.buttonsVisible,
+				};
 			},
 
 			// check if the slide has next element
 			hasNextButton() {
-          if (this.dir === 'rtl') {
-              return (this.imgIndex - 1 >= 0);
-          }
+				if (this.dir === 'rtl') {
+					return (this.imgIndex - 1 >= 0);
+				}
 
-          return (this.imgIndex + 1 < this.items.length);
+				return (this.imgIndex + 1 < this.items.length);
 			},
 
 			// check if the slide has previous element
 			hasPreviousButton() {
-          if (this.dir === 'rtl') {
-              return (this.imgIndex + 1 < this.items.length);
-          }
+				if (this.dir === 'rtl') {
+					return (this.imgIndex + 1 < this.items.length);
+				}
 
-          return (this.imgIndex - 1 >= 0);
+				return (this.imgIndex - 1 >= 0);
 			},
 
 			// check if the slide has next element
 			hasNext() {
-          return (this.imgIndex + 1 < this.items.length);
+				return (this.imgIndex + 1 < this.items.length);
 			},
 
 			// check if the slide has previous element
 			hasPrevious() {
-          return (this.imgIndex - 1 >= 0);
+				return (this.imgIndex - 1 >= 0);
 			},
-  },
+		},
 
-  watch: {
+		watch: {
 			zoomBar(newVal, prevVal) {
-          let item;
-          if (this.isZooming) {
-              item = this.effect === 'swipe'
-                  ? this.$refs.items[this.imgIndex].childNodes[0]
-                  : this.$refs.items.childNodes[0];
+				let item;
+				if (this.isZooming) {
+					item = this.effect === 'swipe'
+						? this.$refs.items[this.imgIndex].childNodes[0]
+						: this.$refs.items.childNodes[0];
 
-              const newZoom = 1.6 + newVal / 10;
-              item.style.transform = `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(${newZoom}, ${newZoom}, ${newZoom})`;
-          }
+					const newZoom = 1.6 + newVal / 10;
+					item.style.transform = `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(${newZoom}, ${newZoom}, ${newZoom})`;
+				}
 			},
 
 			showThumbs(prev, val) {
-          let widthGalleryBlock = 212;
-          let swipeAnimation = 'all .3s ease';
-          if (window.innerWidth < 767) {
-              widthGalleryBlock = 102;
-              swipeAnimation = null;
-          }
+				let widthGalleryBlock = 212;
+				let swipeAnimation = 'all .3s ease';
+				if (window.innerWidth < 767) {
+					widthGalleryBlock = 102;
+					swipeAnimation = null;
+				}
 
-          if (this.thumbsPosition === 'bottom') {
-              widthGalleryBlock = 0;
-          }
+				if (this.thumbsPosition === 'bottom') {
+					widthGalleryBlock = 0;
+				}
 
-          const self = this;
-          this.swipeAnimation = swipeAnimation;
+				const self = this;
+				this.swipeAnimation = swipeAnimation;
 
-          if (prev) {
-              this.xSwipeWrapper = this.dir === 'rtl' ? this.imgIndex * (window.innerWidth - widthGalleryBlock) + 30 * this.imgIndex : -this.imgIndex * (window.innerWidth - widthGalleryBlock) - 30 * this.imgIndex;
-          } else if (this.dir === 'rtl') {
-              this.xSwipeWrapper = this.imgIndex * window.innerWidth + 30 * this.imgIndex;
-          } else {
-              this.xSwipeWrapper = -this.imgIndex * window.innerWidth - 30 * this.imgIndex;
-          }
+				if (prev) {
+					this.xSwipeWrapper = this.dir === 'rtl' ? this.imgIndex * (window.innerWidth - widthGalleryBlock) + 30 * this.imgIndex : -this.imgIndex * (window.innerWidth - widthGalleryBlock) - 30 * this.imgIndex;
+				} else if (this.dir === 'rtl') {
+					this.xSwipeWrapper = this.imgIndex * window.innerWidth + 30 * this.imgIndex;
+				} else {
+					this.xSwipeWrapper = -this.imgIndex * window.innerWidth - 30 * this.imgIndex;
+				}
 
-          setTimeout(() => {
-              self.swipeAnimation = null;
-          }, 300);
+				setTimeout(() => {
+					self.swipeAnimation = null;
+				}, 300);
 			},
 
 			index(prev, val) {
-          const self = this;
+				const self = this;
 
-          if (prev !== null) {
-              // swipe type
-              this.swipeType = null;
-              this.initialMouseY = 0;
-              this.ySwipeWrapper = 0;
+				if (prev !== null) {
+					// swipe type
+					this.swipeType = null;
+					this.initialMouseY = 0;
+					this.ySwipeWrapper = 0;
 
-              // set loop from data
-              this.loopData = this.loop;
+					// set loop from data
+					this.loopData = this.loop;
 
-              // swipe effect case remove loop
-              if (this.effect === 'swipe') {
-                  this.loopData = false;
-                  window.addEventListener('resize', this.xPositionOnResize);
-              }
+					// swipe effect case remove loop
+					if (this.effect === 'swipe') {
+						this.loopData = false;
+						window.addEventListener('resize', this.xPositionOnResize);
+					}
 
-              // add img index
-              this.imgIndex = prev;
-              this.isVisible = true;
+					// add img index
+					this.imgIndex = prev;
+					this.isVisible = true;
 
-              // add events listener
-              window.addEventListener('keydown', this.eventListener);
+					// add events listener
+					window.addEventListener('keydown', this.eventListener);
 
-              // add wheel event
-              if (this.enableWheelEvent) {
-                  window.addEventListener('wheel', this.wheelEvent);
-              }
+					// add wheel event
+					if (this.enableWheelEvent) {
+						window.addEventListener('wheel', this.wheelEvent);
+					}
 
-              // add click event
-              setTimeout(() => {
-                  window.addEventListener('click', self.showButtons);
-              }, 200);
+					// add click event
+					setTimeout(() => {
+						window.addEventListener('click', self.showButtons);
+					}, 200);
 
-              if (this.enableScrollLock) {
-                  setTimeout(() => {
-                      self.setCompensateForScrollbar();
-                      disableBodyScroll(self.$refs.coolLightbox);
-                  }, 50);
-              }
-          } else {
-              // hide and stop slideshow
-              this.isVisible = false;
-              this.stopSlideShow();
+					if (this.enableScrollLock) {
+						setTimeout(() => {
+							self.setCompensateForScrollbar();
+							disableBodyScroll(self.$refs.coolLightbox);
+						}, 50);
+					}
+				} else {
+					// hide and stop slideshow
+					this.isVisible = false;
+					this.stopSlideShow();
 
-              // set starts X to 0
-              this.startsX = 0;
-              this.initialMouseY = 0;
-              this.swipeType = null;
+					// set starts X to 0
+					this.startsX = 0;
+					this.initialMouseY = 0;
+					this.swipeType = null;
 
-              // clear interval
-              clearInterval(this.swipeInterval);
-              this.swipeAnimation = null;
+					// clear interval
+					clearInterval(this.swipeInterval);
+					this.swipeAnimation = null;
 
-              // finish swipe
-              this.isDraggingSwipe = false;
-              this.isZooming = true;
+					// finish swipe
+					this.isDraggingSwipe = false;
+					this.isZooming = true;
 
-              // remove events listener
-              window.removeEventListener('keydown', this.eventListener);
+					// remove events listener
+					window.removeEventListener('keydown', this.eventListener);
 
-              if (this.enableScrollLock) {
-                  self.removeCompensateForScrollbar();
-                  enableBodyScroll(self.$refs.coolLightbox);
-              }
+					if (this.enableScrollLock) {
+						self.removeCompensateForScrollbar();
+						enableBodyScroll(self.$refs.coolLightbox);
+					}
 
-              // remove click event
-              window.removeEventListener('click', this.showButtons);
+					// remove click event
+					window.removeEventListener('click', this.showButtons);
 
-              // remove resize event
-              window.removeEventListener('resize', this.xPositionOnResize);
+					// remove resize event
+					window.removeEventListener('resize', this.xPositionOnResize);
 
-              // remove wheel event
-              if (this.enableWheelEvent) {
-                  window.removeEventListener('wheel', this.wheelEvent);
-              }
-          }
+					// remove wheel event
+					if (this.enableWheelEvent) {
+						window.removeEventListener('wheel', this.wheelEvent);
+					}
+				}
 			},
 
 			async imgIndex(prev, val) {
-          // when animation is loaded
-          nextTick(() => {
-              if (this.effect === 'swipe') {
-                  this.setLightboxInnerWidth();
-                  this.setXPosition(prev);
-              }
+				// when animation is loaded
+				nextTick(() => {
+					if (this.effect === 'swipe') {
+						this.setLightboxInnerWidth();
+						this.setXPosition(prev);
+					}
 
-              if (prev !== null && val === null) {
-                  this.$emit('on-open', prev);
-              }
+					if (prev !== null && val === null) {
+						this.$emit('on-open', prev);
+					}
 
-              if (prev !== null) {
-                  if (prev !== val) {
-                      // eslint-disable-next-line no-autofix/unicorn/no-lonely-if
-                      if (
-                          !this.getYoutubeUrl(this.getItemSrc(prev))
-                          && !this.getVimeoUrl(this.getItemSrc(prev))
-                          && !this.getVkVideoUrl(this.getItemSrc(prev))
-                          && !this.getBoomstreamUrl(this.getItemSrc(prev))
-                      ) {
-                          this.stopVideos();
-                      }
-                  }
+					if (prev !== null) {
+						if (prev !== val) {
+							// eslint-disable-next-line no-autofix/unicorn/no-lonely-if
+							if (
+								!this.getYoutubeUrl(this.getItemSrc(prev))
+								&& !this.getVimeoUrl(this.getItemSrc(prev))
+								&& !this.getVkVideoUrl(this.getItemSrc(prev))
+								&& !this.getBoomstreamUrl(this.getItemSrc(prev))
+							) {
+								this.stopVideos();
+							}
+						}
 
-                  // if is an image change imageLoading to true
-                  if (!this.getVideoUrl(this.getItemSrc(prev)) && !this.is_cached(this.getItemSrc(prev))) {
-                      this.imageLoading = true;
-                  }
+						// if is an image change imageLoading to true
+						if (!this.getVideoUrl(this.getItemSrc(prev)) && !this.is_cached(this.getItemSrc(prev))) {
+							this.imageLoading = true;
+						}
 
-                  // add caption padding to Lightbox wrapper
-                  this.addCaptionPadding();
+						// add caption padding to Lightbox wrapper
+						this.addCaptionPadding();
 
-                  // setAspectRatioVideo when is swipe
-                  if (this.effect === 'swipe' || this.getVideoUrl(this.getItemSrc(prev))) {
-                      this.setAspectRatioVideo();
-                  }
-              }
+						// setAspectRatioVideo when is swipe
+						if (this.effect === 'swipe' || this.getVideoUrl(this.getItemSrc(prev))) {
+							this.setAspectRatioVideo();
+						}
+					}
 
-              // reset zoom
-              this.resetZoom();
+					// reset zoom
+					this.resetZoom();
 
-              // reset swipe type
-              this.swipeType = null;
-              this.ySwipeWrapper = 0;
-          });
+					// reset swipe type
+					this.swipeType = null;
+					this.ySwipeWrapper = 0;
+				});
 			},
-  },
+		},
 
-  methods: {
+		methods: {
 			getExtFromItem(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          if (this.checkIfIsObject(imgIndex)) {
-              const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					const item = this.items[imgIndex];
 
-              // item extension is specified, so return it
-              if (item.ext) {
-                  return item.ext;
-              }
+					// item extension is specified, so return it
+					if (item.ext) {
+						return item.ext;
+					}
 
-              return 'mp4';
-          }
+					return 'mp4';
+				}
 			},
 
 			stopVideos() {
-          const videos = document.querySelectorAll('.cool-lightbox-video');
+				const videos = document.querySelectorAll('.cool-lightbox-video');
 
-          if (videos.length > 0) {
-              videos.forEach((video) => {
-                  const type = video.tagName;
+				if (videos.length > 0) {
+					videos.forEach((video) => {
+						const type = video.tagName;
 
-                  if (type === 'IFRAME') {
-                      return video.src;
-                  }
+						if (type === 'IFRAME') {
+							return video.src;
+						}
 
-                  if (isVideoPlaying(video)) {
-                      return video.pause();
-                  }
-              });
-          }
+						if (isVideoPlaying(video)) {
+							return video.pause();
+						}
+					});
+				}
 			},
 
 			removeCompensateForScrollbar() {
-          document.body.classList.remove('compensate-for-scrollbar');
-          const noScrollStyle = document.querySelector('#coollightbox-style-noscroll');
-          if (noScrollStyle !== null) {
-              document.querySelector('#coollightbox-style-noscroll').remove();
-          }
+				document.body.classList.remove('compensate-for-scrollbar');
+				const noScrollStyle = document.querySelector('#coollightbox-style-noscroll');
+				if (noScrollStyle !== null) {
+					document.querySelector('#coollightbox-style-noscroll').remove();
+				}
 			},
 
 			setCompensateForScrollbar() {
-          const isMobile = /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(navigator.userAgent);
+				const isMobile = /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i.test(navigator.userAgent);
 
-          if (
-              !isMobile
-              && document.body.scrollHeight > window.innerHeight
-          ) {
-              document.querySelectorAll('head')[0].insertAdjacentHTML(
-                  'beforeend',
-                  `<style id="coollightbox-style-noscroll" type="text/css">
+				if (
+					!isMobile
+					&& document.body.scrollHeight > window.innerHeight
+				) {
+					document.querySelectorAll('head')[0].insertAdjacentHTML(
+						'beforeend',
+						`<style id="coollightbox-style-noscroll" type="text/css">
                       .compensate-for-scrollbar {
                           margin-right: ${(window.innerWidth - document.documentElement.clientWidth)}px;
                       }
                   </style>`,
-              );
+					);
 
-              document.body.classList.add('compensate-for-scrollbar');
-          }
+					document.body.classList.add('compensate-for-scrollbar');
+				}
 			},
 
 			setAutoplay(itemIndex) {
-          if (this.checkIfIsObject(itemIndex) && Object.hasOwn(this.items[itemIndex], 'autoplay') && this.items[itemIndex].autoplay) {
-              return true;
-          }
+				if (this.checkIfIsObject(itemIndex) && Object.hasOwn(this.items[itemIndex], 'autoplay') && this.items[itemIndex].autoplay) {
+					return true;
+				}
 
-          return false;
+				return false;
 			},
 
 			toggleFullScreenMode() {
-          if (this.isFullScreenMode) {
-              this.closeFullscreen();
-          } else {
-              this.fullScreenMode();
-          }
+				if (this.isFullScreenMode) {
+					this.closeFullscreen();
+				} else {
+					this.fullScreenMode();
+				}
 
-          this.isFullScreenMode = !this.isFullScreenMode;
+				this.isFullScreenMode = !this.isFullScreenMode;
 			},
 
 			closeFullscreen() {
-          if (document.exitFullscreen) {
-              document.exitFullscreen();
-          } else if (document.mozCancelFullScreen) { /* Firefox */
-              document.mozCancelFullScreen();
-          } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-              document.webkitExitFullscreen();
-          } else if (document.msExitFullscreen) { /* IE/Edge */
-              document.msExitFullscreen();
-          }
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if (document.mozCancelFullScreen) { /* Firefox */
+					document.mozCancelFullScreen();
+				} else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+					document.webkitExitFullscreen();
+				} else if (document.msExitFullscreen) { /* IE/Edge */
+					document.msExitFullscreen();
+				}
 			},
 
 			fullScreenMode() {
-          /* Get the documentElement (<html>) to display the page in fullscreen */
-          const elem = document.documentElement;
-          if (elem.requestFullscreen) {
-              elem.requestFullscreen();
-          } else if (elem.mozRequestFullScreen) { /* Firefox */
-              elem.mozRequestFullScreen();
-          } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-              elem.webkitRequestFullscreen();
-          } else if (elem.msRequestFullscreen) { /* IE/Edge */
-              elem.msRequestFullscreen();
-          }
+				/* Get the documentElement (<html>) to display the page in fullscreen */
+				const elem = document.documentElement;
+				if (elem.requestFullscreen) {
+					elem.requestFullscreen();
+				} else if (elem.mozRequestFullScreen) { /* Firefox */
+					elem.mozRequestFullScreen();
+				} else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+					elem.webkitRequestFullscreen();
+				} else if (elem.msRequestFullscreen) { /* IE/Edge */
+					elem.msRequestFullscreen();
+				}
 			},
 
 			// check if event is arrow button or toolbar button
 			checkIfIsButton(event) {
-          const elements = '.cool-lightbox__iframe *, .cool-lightbox-button, .cool-lightbox-button *, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
-          if (event.target.matches(elements)) {
-              return true;
-          }
+				const elements = '.cool-lightbox__iframe *, .cool-lightbox-button, .cool-lightbox-button *, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
+				if (event.target.matches(elements)) {
+					return true;
+				}
 
-          return false;
+				return false;
 			},
 
 			// start swipe event
 			startSwipe(event) {
-          if (this.isZooming) {
-              return false;
-          }
+				if (this.isZooming) {
+					return false;
+				}
 
-          // check if is some button
-          if (this.checkIfIsButton(event)) {
-              return false;
-          }
+				// check if is some button
+				if (this.checkIfIsButton(event)) {
+					return false;
+				}
 
-          // clear interval
-          clearInterval(this.swipeInterval);
-          this.swipeAnimation = null;
+				// clear interval
+				clearInterval(this.swipeInterval);
+				this.swipeAnimation = null;
 
-          // starts swipe
-          this.isDraggingSwipe = true;
-          this.initialMouseX = this.getMouseXPosFromEvent(event);
-          this.initialMouseY = this.getMouseYPosFromEvent(event);
+				// starts swipe
+				this.isDraggingSwipe = true;
+				this.initialMouseX = this.getMouseXPosFromEvent(event);
+				this.initialMouseY = this.getMouseYPosFromEvent(event);
 			},
 
 			// continue swipe event
 			continueSwipe(event) {
-          if (!this.isDraggingSwipe) return;
+				if (!this.isDraggingSwipe) return;
 
-          this.isSwiping = true;
-          const currentPosX = this.getMouseXPosFromEvent(event);
-          const currentPosY = this.getMouseYPosFromEvent(event);
-          const windowWidth = this.lightboxInnerWidth;
+				this.isSwiping = true;
+				const currentPosX = this.getMouseXPosFromEvent(event);
+				const currentPosY = this.getMouseYPosFromEvent(event);
+				const windowWidth = this.lightboxInnerWidth;
 
-          // diffs
-          const diffX = Math.abs(currentPosX - this.initialMouseX);
-          const diffY = Math.abs(currentPosY - this.initialMouseY);
+				// diffs
+				const diffX = Math.abs(currentPosX - this.initialMouseX);
+				const diffY = Math.abs(currentPosY - this.initialMouseY);
 
-          // swipe type
-          if (this.swipeType === null && (diffY > 5 || diffX > 5)) {
-              this.swipeType = diffY > diffX ? 'v' : 'h';
-          }
+				// swipe type
+				if (this.swipeType === null && (diffY > 5 || diffX > 5)) {
+					this.swipeType = diffY > diffX ? 'v' : 'h';
+				}
 
-          // swipe
-          if (this.swipeType === 'h') {
-              // swipe wrapper
-              this.xSwipeWrapper = this.dir === 'rtl' ? (windowWidth * this.imgIndex) + currentPosX - this.initialMouseX + 30 * this.imgIndex : -(windowWidth * this.imgIndex) + currentPosX - this.initialMouseX - 30 * this.imgIndex;
-          } else {
-              this.ySwipeWrapper = currentPosY - this.initialMouseY;
-          }
+				// swipe
+				if (this.swipeType === 'h') {
+					// swipe wrapper
+					this.xSwipeWrapper = this.dir === 'rtl' ? (windowWidth * this.imgIndex) + currentPosX - this.initialMouseX + 30 * this.imgIndex : -(windowWidth * this.imgIndex) + currentPosX - this.initialMouseX - 30 * this.imgIndex;
+				} else {
+					this.ySwipeWrapper = currentPosY - this.initialMouseY;
+				}
 
-          // mobile caseS
-          if (event.type === 'touchmove') {
-              this.endMouseX = this.getMouseXPosFromEvent(event);
-              this.endMouseY = this.getMouseYPosFromEvent(event);
-          }
+				// mobile caseS
+				if (event.type === 'touchmove') {
+					this.endMouseX = this.getMouseXPosFromEvent(event);
+					this.endMouseY = this.getMouseYPosFromEvent(event);
+				}
 			},
 
 			// end swipe event
 			endSwipe(event) {
-          if (this.checkIfIsButton(event) && this.initialMouseX === 0) {
-              return false;
-          }
+				if (this.checkIfIsButton(event) && this.initialMouseX === 0) {
+					return false;
+				}
 
-          // event check is dragging and swipe
-          const self = this;
-          const { swipeType } = this;
-          this.isDraggingSwipe = false;
+				// event check is dragging and swipe
+				const self = this;
+				const { swipeType } = this;
+				this.isDraggingSwipe = false;
 
-          // horizontal swipe type
-          if (this.initialMouseX === 0 && swipeType === 'h') {
-              return false;
-          }
+				// horizontal swipe type
+				if (this.initialMouseX === 0 && swipeType === 'h') {
+					return false;
+				}
 
-          // touch end fixes
-          if (event.type !== 'touchend') {
-              this.endMouseX = this.getMouseXPosFromEvent(event);
-              this.endMouseY = this.getMouseYPosFromEvent(event);
-          } else if (this.endMouseX === 0) {
-              return;
-          }
+				// touch end fixes
+				if (event.type !== 'touchend') {
+					this.endMouseX = this.getMouseXPosFromEvent(event);
+					this.endMouseY = this.getMouseYPosFromEvent(event);
+				} else if (this.endMouseX === 0) {
+					return;
+				}
 
-          // check if is dragged
-          if (
-              ((this.endMouseX - this.initialMouseX === 0) && swipeType === 'h')
-              || this.isZooming
-              || ((this.endMouseY - this.initialMouseY === 0) && swipeType === 'v')
-          ) {
-              return;
-          }
+				// check if is dragged
+				if (
+					((this.endMouseX - this.initialMouseX === 0) && swipeType === 'h')
+					|| this.isZooming
+					|| ((this.endMouseY - this.initialMouseY === 0) && swipeType === 'v')
+				) {
+					return;
+				}
 
-          // set swipe animation
-          this.setSwipeAnimation();
+				// set swipe animation
+				this.setSwipeAnimation();
 
-          // reset swipe data
-          setTimeout(() => {
-              self.isSwiping = false;
-              self.initialMouseX = 0;
-              self.endMouseX = 0;
-          }, 10);
+				// reset swipe data
+				setTimeout(() => {
+					self.isSwiping = false;
+					self.initialMouseX = 0;
+					self.endMouseX = 0;
+				}, 10);
 
-          // type of swipe
-          if (this.swipeType === 'h') {
-              // if the swipe is to the right
-              if ((this.endMouseX - this.initialMouseX) < -40) {
-                  if (this.dir === 'rtl') {
-                      return this.swipeToLeft();
-                  }
-                  return this.swipeToRight();
-              }
+				// type of swipe
+				if (this.swipeType === 'h') {
+					// if the swipe is to the right
+					if ((this.endMouseX - this.initialMouseX) < -40) {
+						if (this.dir === 'rtl') {
+							return this.swipeToLeft();
+						}
+						return this.swipeToRight();
+					}
 
-              // if the swipe is to the left
-              if ((this.endMouseX - this.initialMouseX) > 40) {
-                  if (this.dir === 'rtl') {
-                      return this.swipeToRight();
-                  }
-                  return this.swipeToLeft();
-              }
-          }
+					// if the swipe is to the left
+					if ((this.endMouseX - this.initialMouseX) > 40) {
+						if (this.dir === 'rtl') {
+							return this.swipeToRight();
+						}
+						return this.swipeToLeft();
+					}
+				}
 
 
-          if (this.swipeType === 'v') {
-              const diffY = Math.abs(this.endMouseY - this.initialMouseY);
+				if (this.swipeType === 'v') {
+					const diffY = Math.abs(this.endMouseY - this.initialMouseY);
 
-              // diff Y
-              if (diffY >= 90) {
-                  this.close();
-              } else {
-                  this.ySwipeWrapper = 0;
-              }
-          }
+					// diff Y
+					if (diffY >= 90) {
+						this.close();
+					} else {
+						this.ySwipeWrapper = 0;
+					}
+				}
 
-          this.swipeType = null;
-          const windowWidth = this.lightboxInnerWidth;
+				this.swipeType = null;
+				const windowWidth = this.lightboxInnerWidth;
 
-          if (this.dir === 'rtl') {
-              this.xSwipeWrapper = this.imgIndex * windowWidth + 30 * this.imgIndex;
-              return;
-          }
+				if (this.dir === 'rtl') {
+					this.xSwipeWrapper = this.imgIndex * windowWidth + 30 * this.imgIndex;
+					return;
+				}
 
-          this.xSwipeWrapper = -this.imgIndex * windowWidth - 30 * this.imgIndex;
+				this.xSwipeWrapper = -this.imgIndex * windowWidth - 30 * this.imgIndex;
 			},
 
 			// swipe to left effect
 			swipeToLeft() {
-          if (!this.hasPrevious && this.effect === 'swipe') {
-              if (this.dir === 'rtl') {
-                  this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
-                  return this.xSwipeWrapper;
-              }
+				if (!this.hasPrevious && this.effect === 'swipe') {
+					if (this.dir === 'rtl') {
+						this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
+						return this.xSwipeWrapper;
+					}
 
-              this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
-              return this.xSwipeWrapper;
-          }
+					this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
+					return this.xSwipeWrapper;
+				}
 
-          this.changeIndexToPrev();
+				this.changeIndexToPrev();
 			},
 
 			// swipe to right effect
 			swipeToRight() {
-          if (!this.hasNext && this.effect === 'swipe') {
-              if (this.dir === 'rtl') {
-                  this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
-                  return this.xSwipeWrapper;
-              }
+				if (!this.hasNext && this.effect === 'swipe') {
+					if (this.dir === 'rtl') {
+						this.xSwipeWrapper = this.imgIndex * this.lightboxInnerWidth + 30 * this.imgIndex;
+						return this.xSwipeWrapper;
+					}
 
-              this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
-              return this.xSwipeWrapper;
-          }
+					this.xSwipeWrapper = -this.imgIndex * this.lightboxInnerWidth - 30 * this.imgIndex;
+					return this.xSwipeWrapper;
+				}
 
-          this.changeIndexToNext();
+				this.changeIndexToNext();
 			},
 
 			// function that return x position from event
 			getMouseXPosFromEvent(event) {
-          if (event.type.includes('mouse')) {
-              return event.clientX;
-          }
-          return event.touches[0].clientX;
+				if (event.type.includes('mouse')) {
+					return event.clientX;
+				}
+				return event.touches[0].clientX;
 			},
 
 			// function that return Y position from event
 			getMouseYPosFromEvent(event) {
-          if (event.type.includes('mouse')) {
-              return event.clientY;
-          }
-          return event.touches[0].clientY;
+				if (event.type.includes('mouse')) {
+					return event.clientY;
+				}
+				return event.touches[0].clientY;
 			},
 
 			// check if the image is cached
 			is_cached(src) {
-          const image = new Image();
-          image.src = src;
+				const image = new Image();
+				image.src = src;
 
-          return image.complete;
+				return image.complete;
 			},
 
 			// image loaded event
 			imageLoaded() {
-          this.imageLoading = false;
+				this.imageLoading = false;
 			},
 
 			// get video url
 			itemThumb(itemUrl, itemIndex) {
-          const thumb = this.getItemThumb(itemIndex);
-          if (thumb) {
-              return thumb;
-          }
+				const thumb = this.getItemThumb(itemIndex);
+				if (thumb) {
+					return thumb;
+				}
 
-          const youtubeID = this.getYoutubeID(itemUrl);
-          if (youtubeID) {
-              return `https://img.youtube.com/vi/${youtubeID}/mqdefault.jpg`;
-          }
+				const youtubeID = this.getYoutubeID(itemUrl);
+				if (youtubeID) {
+					return `https://img.youtube.com/vi/${youtubeID}/mqdefault.jpg`;
+				}
 
-          const vimeoID = this.getVimeoID(itemUrl);
-          if (vimeoID) {
-              return false;
-          }
+				const vimeoID = this.getVimeoID(itemUrl);
+				if (vimeoID) {
+					return false;
+				}
 
-          return itemUrl;
+				return itemUrl;
 			},
 
 			isItemPicture(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          const item = this.items[imgIndex];
-          if (this.checkIfIsObject(imgIndex)) {
-              return item.picture;
-          }
+				const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					return item.picture;
+				}
 
-          return false;
+				return false;
 			},
 
 			getPictureSources(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          const { picture } = this.items[imgIndex];
+				const { picture } = this.items[imgIndex];
 
-          return picture.sources || [];
+				return picture.sources || [];
 			},
 
 			// get item src
 			getItemSrc(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          const item = this.items[imgIndex];
-          if (this.checkIfIsObject(imgIndex)) {
-              return item[this.srcName];
-          }
+				const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					return item[this.srcName];
+				}
 
-          return item;
+				return item;
 			},
 
 			getItemSrcSet(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          const item = this.items[imgIndex];
-          if (this.checkIfIsObject(imgIndex)) {
-              return item[this.srcSetName];
-          }
+				const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					return item[this.srcSetName];
+				}
 
-          return null;
+				return null;
 			},
 
 			getItemSizes(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          const item = this.items[imgIndex];
-          if (this.checkIfIsObject(imgIndex)) {
-              return item.sizes;
-          }
+				const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					return item.sizes;
+				}
 
-          return null;
+				return null;
 			},
 
 			getItemAlt(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          const item = this.items[imgIndex];
-          if (this.checkIfIsObject(imgIndex)) {
-              return item.alt;
-          }
+				const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					return item.alt;
+				}
 
-          return null;
+				return null;
 			},
 
 			getItemThumb(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          const item = this.items[imgIndex];
-          if (this.checkIfIsObject(imgIndex)) {
-              return item[this.srcThumb];
-          }
+				const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					return item[this.srcThumb];
+				}
 
-          if (this.getVideoUrl(item)) {
-              return false;
-          }
+				if (this.getVideoUrl(item)) {
+					return false;
+				}
 
-          return item;
+				return item;
 			},
 
 			// get item media type
 			getMediaType(imgIndex) {
-          if (imgIndex === null) {
-              return false;
-          }
+				if (imgIndex === null) {
+					return false;
+				}
 
-          if (this.checkIfIsObject(imgIndex)) {
-              const item = this.items[imgIndex];
+				if (this.checkIfIsObject(imgIndex)) {
+					const item = this.items[imgIndex];
 
-              // item type is specified, so return it
-              if (item[this.srcMediaType]) {
-                  return item[this.srcMediaType];
-              }
-          }
+					// item type is specified, so return it
+					if (item[this.srcMediaType]) {
+						return item[this.srcMediaType];
+					}
+				}
 
-          if (this.getVideoUrl(this.getItemSrc(imgIndex))) {
-              return 'video';
-          } else if (this.getPDFurl(this.getItemSrc(imgIndex))) {
-              return 'iframe';
-          }
+				if (this.getVideoUrl(this.getItemSrc(imgIndex))) {
+					return 'video';
+				} else if (this.getPDFurl(this.getItemSrc(imgIndex))) {
+					return 'iframe';
+				}
 
-          return 'image';
+				return 'image';
 			},
 
 			// toggle play slideshow event
 			togglePlaySlideshow() {
-          if (!this.slideshow) {
-              return false;
-          }
+				if (!this.slideshow) {
+					return false;
+				}
 
-          if (!this.hasNext && !this.loopData) {
-              return false;
-          }
-          this.isPlayingSlideShow = !this.isPlayingSlideShow;
+				if (!this.hasNext && !this.loopData) {
+					return false;
+				}
+				this.isPlayingSlideShow = !this.isPlayingSlideShow;
 
-          // if is playing move if not stop it
-          if (this.isPlayingSlideShow) {
-              this.move();
-          } else {
-              this.stopSlideShow();
-          }
+				// if is playing move if not stop it
+				if (this.isPlayingSlideShow) {
+					this.move();
+				} else {
+					this.stopSlideShow();
+				}
 			},
 
 			// stop slideshow
 			stopSlideShow() {
-          this.isPlayingSlideShow = false;
-          clearInterval(this.intervalProgress);
-          this.stylesInterval = {
-              transform: 'scaleX(0)',
-              transition: 'none',
-          };
+				this.isPlayingSlideShow = false;
+				clearInterval(this.intervalProgress);
+				this.stylesInterval = {
+					transform: 'scaleX(0)',
+					transition: 'none',
+				};
 			},
 
 			// move event in zoom
 			move() {
-          const self = this;
+				const self = this;
 
-          const frame = () => {
-              self.stylesInterval = {
-                  transform: 'scaleX(0)',
-                  transition: 'none',
-              };
+				const frame = () => {
+					self.stylesInterval = {
+						transform: 'scaleX(0)',
+						transition: 'none',
+					};
 
-              if (self.dir === 'rtl') {
-                  self.onPrevClick(true);
-              } else {
-                  self.onNextClick(true);
-              }
+					if (self.dir === 'rtl') {
+						self.onPrevClick(true);
+					} else {
+						self.onNextClick(true);
+					}
 
-              if (!self.hasNext && !self.loopData) {
-                  self.stopSlideShow();
-              } else {
-                  setTimeout(() => {
-                      self.stylesInterval = {
-                          'transform': 'scaleX(1)',
-                          'background': self.slideshowColorBar,
-                          'transition-duration': `${self.slideshowDuration}ms`,
-                      };
-                  }, 50);
-              }
-          };
+					if (!self.hasNext && !self.loopData) {
+						self.stopSlideShow();
+					} else {
+						setTimeout(() => {
+							self.stylesInterval = {
+								'transform': 'scaleX(1)',
+								'background': self.slideshowColorBar,
+								'transition-duration': `${self.slideshowDuration}ms`,
+							};
+						}, 50);
+					}
+				};
 
-          this.progressWidth = 100;
-          this.intervalProgress = setInterval(frame, this.slideshowDuration + 90);
+				this.progressWidth = 100;
+				this.intervalProgress = setInterval(frame, this.slideshowDuration + 90);
 
-          self.stylesInterval = {
-              'transform': 'scaleX(1)',
-              'background': this.slideshowColorBar,
-              'transition-duration': `${this.slideshowDuration}ms`,
-          };
+				self.stylesInterval = {
+					'transform': 'scaleX(1)',
+					'background': this.slideshowColorBar,
+					'transition-duration': `${this.slideshowDuration}ms`,
+				};
 			},
 
 			// show buttons event
 			showButtons(event) {
-          if (this.disableZoom && !this.checkIfIsButton(event)) {
-              const self = this;
-              setTimeout(() => {
-                  self.buttonsVisible = !self.buttonsVisible;
-              }, 100);
-          }
+				if (this.disableZoom && !this.checkIfIsButton(event)) {
+					const self = this;
+					setTimeout(() => {
+						self.buttonsVisible = !self.buttonsVisible;
+					}, 100);
+				}
 			},
 
 			// check if is allowed to drag
 			checkMouseEventPropButton(button) {
-          if (!this.isZooming) return false;
-          // mouse left btn click
-          return button === 0;
+				if (!this.isZooming) return false;
+				// mouse left btn click
+				return button === 0;
 			},
 
 			// handle mouse down event
 			handleMouseDown(e) {
-          if (!(e.type === 'touchstart' && this.isZooming || e.type === 'mousedown' && this.checkMouseEventPropButton(e.button))) { return; }
-          this.lastX = (e.type === 'touchstart' ? e.touches[0] : e).clientX;
-          this.lastY = (e.type === 'touchstart' ? e.touches[0] : e).clientY;
+				if (!(e.type === 'touchstart' && this.isZooming || e.type === 'mousedown' && this.checkMouseEventPropButton(e.button))) { return; }
+				this.lastX = (e.type === 'touchstart' ? e.touches[0] : e).clientX;
+				this.lastY = (e.type === 'touchstart' ? e.touches[0] : e).clientY;
 
-          if (this.isZooming) {
-              this.isDraging = true;
-          }
+				if (this.isZooming) {
+					this.isDraging = true;
+				}
 
-          e.stopPropagation();
+				e.stopPropagation();
 			},
 
 			// handle mouse up event
 			handleMouseUp(e) {
-          if (!(e.type === 'touchend' && this.isZooming || e.type === 'mouseup' && this.checkMouseEventPropButton(e.button))) { return; }
-          this.isDraging = false;
-          this.lastX = 0;
-          this.lastY = 0;
+				if (!(e.type === 'touchend' && this.isZooming || e.type === 'mouseup' && this.checkMouseEventPropButton(e.button))) { return; }
+				this.isDraging = false;
+				this.lastX = 0;
+				this.lastY = 0;
 
-          // Fix drag zoom out
-          setTimeout(() => {
-              this.canZoom = true;
-          }, 100);
+				// Fix drag zoom out
+				setTimeout(() => {
+					this.canZoom = true;
+				}, 100);
 			},
 
 			// handle mouse leave event
 			handleMouseLeave(e) {
-          if (!(e.type === 'mouseleave' && this.isZooming)) { return; }
-          this.isDraging = false;
-          this.lastX = 0;
-          this.lastY = 0;
+				if (!(e.type === 'mouseleave' && this.isZooming)) { return; }
+				this.isDraging = false;
+				this.lastX = 0;
+				this.lastY = 0;
 
-          // Fix drag zoom out
-          setTimeout(() => {
-              this.canZoom = true;
-          }, 100);
+				// Fix drag zoom out
+				setTimeout(() => {
+					this.canZoom = true;
+				}, 100);
 			},
 
 			// handle mouse move event
 			handleMouseMove(e) {
-          if (!(e.type === 'touchmove' && this.isZooming || e.type === 'mousemove' && this.checkMouseEventPropButton(e.button))) { return; }
-          if (this.isDraging) {
-              const { clientX } = (e.type === 'touchmove' ? e.touches[0] : e);
-              const { clientY } = (e.type === 'touchmove' ? e.touches[0] : e);
-              this.top = this.top - this.lastY + clientY;
-              this.left = this.left - this.lastX + clientX;
-              this.lastX = clientX;
-              this.lastY = clientY;
-              this.canZoom = false;
+				if (!(e.type === 'touchmove' && this.isZooming || e.type === 'mousemove' && this.checkMouseEventPropButton(e.button))) { return; }
+				if (this.isDraging) {
+					const { clientX } = (e.type === 'touchmove' ? e.touches[0] : e);
+					const { clientY } = (e.type === 'touchmove' ? e.touches[0] : e);
+					this.top = this.top - this.lastY + clientY;
+					this.left = this.left - this.lastX + clientX;
+					this.lastX = clientX;
+					this.lastY = clientY;
+					this.canZoom = false;
 
-              const item = e.target.parentNode.nodeName === 'PICTURE'
-                  ? e.target.parentNode.parentNode
-                  : e.target.parentNode;
-              const newZoom = 1.6 + this.zoomBar / 10;
-              item.style.transform = `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(${newZoom}, ${newZoom}, ${newZoom})`;
-          }
-          e.stopPropagation();
+					const item = e.target.parentNode.nodeName === 'PICTURE'
+						? e.target.parentNode.parentNode
+						: e.target.parentNode;
+					const newZoom = 1.6 + this.zoomBar / 10;
+					item.style.transform = `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(${newZoom}, ${newZoom}, ${newZoom})`;
+				}
+				e.stopPropagation();
 			},
 
 			// zoom image event
 			zoomImage(indexImage) {
-          if (this.disableZoom) {
-              return false;
-          }
+				if (this.disableZoom) {
+					return false;
+				}
 
-          if (!this.canZoom) {
-              return false;
-          }
+				if (!this.canZoom) {
+					return false;
+				}
 
-          if (this.isSwiping) {
-              return false;
-          }
+				if (this.isSwiping) {
+					return false;
+				}
 
-          // item zoom
-          const item = this.effect === 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
+				// item zoom
+				const item = this.effect === 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
 
-          // zoom variables
-          const { isZooming } = this;
+				// zoom variables
+				const { isZooming } = this;
 
-          // Is zooming check
-          if (isZooming) {
-              if (!this.isDraging) {
-                  this.isZooming = false;
-                  this.zoomBar = 0;
-              }
-          } else {
-              this.isZooming = true;
-          }
+				// Is zooming check
+				if (isZooming) {
+					if (!this.isDraging) {
+						this.isZooming = false;
+						this.zoomBar = 0;
+					}
+				} else {
+					this.isZooming = true;
+				}
 
-          // check if is zooming
-          if (this.isZooming) {
-              this.stopSlideShow();
+				// check if is zooming
+				if (this.isZooming) {
+					this.stopSlideShow();
 
-              // add scale
-              item.style.transform = 'translate3d(calc(-50%), calc(-50%), 0px) scale3d(1.6, 1.6, 1.6)';
+					// add scale
+					item.style.transform = 'translate3d(calc(-50%), calc(-50%), 0px) scale3d(1.6, 1.6, 1.6)';
 
-              // hide buttons
-              this.buttonsVisible = false;
+					// hide buttons
+					this.buttonsVisible = false;
 
-              // fix drag transition problems
-              setTimeout(() => {
-                  this.transition = 'all .0s ease';
-              }, 100);
-          } else {
-              // show buttons
-              this.buttonsVisible = true;
-              this.resetZoom();
-          }
+					// fix drag transition problems
+					setTimeout(() => {
+						this.transition = 'all .0s ease';
+					}, 100);
+				} else {
+					// show buttons
+					this.buttonsVisible = true;
+					this.resetZoom();
+				}
 			},
 
 			// Reset zoom data
 			resetZoom() {
-          this.scale = 1;
-          this.left = 0;
-          this.top = 0;
-          this.zoomBar = 0;
-          this.isZooming = false;
-          this.swipeType = null;
-          this.transition = 'all .3s ease';
+				this.scale = 1;
+				this.left = 0;
+				this.top = 0;
+				this.zoomBar = 0;
+				this.isZooming = false;
+				this.swipeType = null;
+				this.transition = 'all .3s ease';
 
-          // only if index is not null
-          if (this.imgIndex !== null) {
-              const item = this.effect === 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
+				// only if index is not null
+				if (this.imgIndex !== null) {
+					const item = this.effect === 'swipe' ? this.$refs.items[this.imgIndex].childNodes[0] : this.$refs.items.childNodes[0];
 
-              // reset styles
-              item.style.transform = this.disableZoom
-                  ? `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px)`
-                  : `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(1, 1, 1)`;
+					// reset styles
+					item.style.transform = this.disableZoom
+						? `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px)`
+						: `translate3d(calc(-50% + ${this.left}px), calc(-50% + ${this.top}px), 0px) scale3d(1, 1, 1)`;
 
-              this.initialMouseX = 0;
-              if (window.innerWidth >= 700) {
-                  this.buttonsVisible = true;
-              }
-          }
+					this.initialMouseX = 0;
+					if (window.innerWidth >= 700) {
+						this.buttonsVisible = true;
+					}
+				}
 			},
 
 			// Aspect Ratio responsive video
 			setAspectRatioVideo() {
-          const el = document.querySelectorAll('.cool-lightbox__inner')[0];
+				const el = document.querySelectorAll('.cool-lightbox__inner')[0];
 
-          const computedStyle = getComputedStyle(el);
-          if (window.innerWidth < 1440) {
-              const width = el.clientWidth;
-              const height = Math.round((width / 16) * 9);
+				const computedStyle = getComputedStyle(el);
+				if (window.innerWidth < 1440) {
+					const width = el.clientWidth;
+					const height = Math.round((width / 16) * 9);
 
-              this.aspectRatioVideo.height = `${height}px`;
-              this.aspectRatioVideo.width = `${width}px`;
-          } else {
-              setTimeout(() => {
-                  let height = el.clientHeight;
-                  height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
+					this.aspectRatioVideo.height = `${height}px`;
+					this.aspectRatioVideo.width = `${width}px`;
+				} else {
+					setTimeout(() => {
+						let height = el.clientHeight;
+						height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
 
-                  const width = (height / 9) * 16;
+						const width = (height / 9) * 16;
 
-                  this.aspectRatioVideo.height = `${height}px`;
-                  this.aspectRatioVideo.width = `${width}px`;
-              }, 150);
-          }
+						this.aspectRatioVideo.height = `${height}px`;
+						this.aspectRatioVideo.width = `${width}px`;
+					}, 150);
+				}
 			},
 
 			// close event
 			close() {
-          this.stopSlideShow();
-          this.swipeType = null;
-          this.$emit('close', this.imgIndex);
-          this.showThumbs = false;
-          this.imgIndex = null;
+				this.stopSlideShow();
+				this.swipeType = null;
+				this.$emit('close', this.imgIndex);
+				this.showThumbs = false;
+				this.imgIndex = null;
 			},
 
 			wheelEvent(event) {
-          const delay = 350;
-          const currentTime = Date.now();
-          const direction = event.deltaY > 0 ? 'top' : 'down';
+				const delay = 350;
+				const currentTime = Date.now();
+				const direction = event.deltaY > 0 ? 'top' : 'down';
 
-          if (currentTime - this.prevTime < delay) return;
+				if (currentTime - this.prevTime < delay) return;
 
-          this.prevTime = currentTime;
+				this.prevTime = currentTime;
 
-          switch (direction) {
-              case 'top':
-                  return this.changeIndexToPrev();
-              case 'down':
-                  return this.changeIndexToNext();
-              default:
-              // no default
-          }
+				switch (direction) {
+					case 'top':
+						return this.changeIndexToPrev();
+					case 'down':
+						return this.changeIndexToNext();
+					default:
+					// no default
+				}
 			},
 
 			// close event click outside
 			closeModal(event) {
-          if (!this.closeOnClickOutsideMobile && window.innerWidth < 700) {
-              return false;
-          }
+				if (!this.closeOnClickOutsideMobile && window.innerWidth < 700) {
+					return false;
+				}
 
-          if (this.isSwiping) {
-              return false;
-          }
+				if (this.isSwiping) {
+					return false;
+				}
 
-          const elements = '.cool-lightbox__iframe, .cool-lightbox__iframe *, .cool-lightbox-zoom, .cool-lightbox-zoom *, .cool-lightbox-thumbs, svg, path, rect, .cool-lightbox-thumbs *, .cool-lightbox-button, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-button *, .cool-lightbox__slide__img *, .cool-lightbox-video, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
-          if (!event.target.matches(elements)) {
-              this.close();
-          }
+				const elements = '.cool-lightbox__iframe, .cool-lightbox__iframe *, .cool-lightbox-zoom, .cool-lightbox-zoom *, .cool-lightbox-thumbs, svg, path, rect, .cool-lightbox-thumbs *, .cool-lightbox-button, .cool-lightbox-toolbar__btn, .cool-lightbox-toolbar__btn *, .cool-lightbox-button *, .cool-lightbox__slide__img *, .cool-lightbox-video, .cool-lightbox-caption h6, .cool-lightbox-caption p, .cool-lightbox-caption a';
+				if (!event.target.matches(elements)) {
+					this.close();
+				}
 			},
 
 			// set swipe animation
 			setSwipeAnimation() {
-          const self = this;
-          clearInterval(this.swipeInterval);
-          this.swipeAnimation = null;
+				const self = this;
+				clearInterval(this.swipeInterval);
+				this.swipeAnimation = null;
 
-          // animation swipe
-          const interval = () => {
-              self.swipeAnimation = null;
-          };
-          this.swipeAnimation = 'all .3s ease';
-          this.swipeInterval = setInterval(interval, 330);
+				// animation swipe
+				const interval = () => {
+					self.swipeAnimation = null;
+				};
+				this.swipeAnimation = 'all .3s ease';
+				this.swipeInterval = setInterval(interval, 330);
 			},
 
 			// next slide event
 			onNextClick(isFromSlideshow = false) {
-          if (this.isZooming) {
-              return false;
-          }
+				if (this.isZooming) {
+					return false;
+				}
 
-          if (!isFromSlideshow) {
-              this.stopSlideShow();
-          }
+				if (!isFromSlideshow) {
+					this.stopSlideShow();
+				}
 
-          this.setSwipeAnimation();
+				this.setSwipeAnimation();
 
-          if (this.dir === 'rtl') {
-              return this.changeIndexToPrev();
-          }
+				if (this.dir === 'rtl') {
+					return this.changeIndexToPrev();
+				}
 
-          this.changeIndexToNext();
+				this.changeIndexToNext();
 			},
 
 			// prev slide event
 			onPrevClick(isFromSlideshow = false) {
-          if (this.isZooming) {
-              return false;
-          }
+				if (this.isZooming) {
+					return false;
+				}
 
-          if (!isFromSlideshow) {
-              this.stopSlideShow();
-          }
+				if (!isFromSlideshow) {
+					this.stopSlideShow();
+				}
 
-          this.setSwipeAnimation();
+				this.setSwipeAnimation();
 
-          if (this.dir === 'rtl') {
-              return this.changeIndexToNext();
-          }
+				if (this.dir === 'rtl') {
+					return this.changeIndexToNext();
+				}
 
-          this.changeIndexToPrev();
+				this.changeIndexToPrev();
 			},
 
 			// change to next index
 			changeIndexToNext() {
-          if (this.hasNext) {
-              this.onIndexChange(this.imgIndex + 1);
-          } else if (this.loopData) {
-              this.onIndexChange(0);
-          }
+				if (this.hasNext) {
+					this.onIndexChange(this.imgIndex + 1);
+				} else if (this.loopData) {
+					this.onIndexChange(0);
+				}
 			},
 
 			// change to prev index
 			changeIndexToPrev() {
-          if (this.hasPrevious) {
-              this.onIndexChange(this.imgIndex - 1);
-          } else if (this.loopData) {
-              this.onIndexChange(this.items.length - 1);
-          }
+				if (this.hasPrevious) {
+					this.onIndexChange(this.imgIndex - 1);
+				} else if (this.loopData) {
+					this.onIndexChange(this.items.length - 1);
+				}
 			},
 
 			// set lightbox inner width
 			setLightboxInnerWidth() {
-          const el = document.querySelectorAll('.cool-lightbox__inner');
-          const width = el[0].clientWidth;
-          this.lightboxInnerWidth = width;
+				const el = document.querySelectorAll('.cool-lightbox__inner');
+				const width = el[0].clientWidth;
+				this.lightboxInnerWidth = width;
 			},
 
 			// x position on resize event
 			xPositionOnResize() {
-          this.setLightboxInnerWidth();
-          const index = this.imgIndex;
+				this.setLightboxInnerWidth();
+				const index = this.imgIndex;
 
-          if (this.dir === 'rtl') {
-              this.xSwipeWrapper = index * this.lightboxInnerWidth + 30 * index;
-              return;
-          }
+				if (this.dir === 'rtl') {
+					this.xSwipeWrapper = index * this.lightboxInnerWidth + 30 * index;
+					return;
+				}
 
-          // set x position
-          this.xSwipeWrapper = -index * this.lightboxInnerWidth - 30 * index;
+				// set x position
+				this.xSwipeWrapper = -index * this.lightboxInnerWidth - 30 * index;
 			},
 
 			// set x position by img index
 			setXPosition(index) {
-          if (this.dir === 'rtl') {
-              this.xSwipeWrapper = index * this.lightboxInnerWidth + 30 * index;
-              return;
-          }
+				if (this.dir === 'rtl') {
+					this.xSwipeWrapper = index * this.lightboxInnerWidth + 30 * index;
+					return;
+				}
 
-          // set x position
-          this.xSwipeWrapper = -index * this.lightboxInnerWidth - 30 * index;
+				// set x position
+				this.xSwipeWrapper = -index * this.lightboxInnerWidth - 30 * index;
 			},
 
 			// index change
 			onIndexChange(index) {
-          const self = this;
-          this.imgIndex = index;
-          this.$emit('on-change', index);
+				const self = this;
+				this.imgIndex = index;
+				this.$emit('on-change', index);
 
-          setTimeout(() => {
-              self.$emit('on-change-end', index);
-          }, 400);
+				setTimeout(() => {
+					self.$emit('on-change-end', index);
+				}, 400);
 			},
 
 			// caption size
 			addCaptionPadding() {
-          if (
-              this.checkIfIsObject(this.imgIndex)
-              && (this.items[this.imgIndex].title)
-              || this.items[this.imgIndex].descripcion
-          ) {
-              const el = document.querySelectorAll('.cool-lightbox-caption');
-              if (el.length > 0) {
-                  this.paddingBottom = el[0].offsetHeight;
-              }
-          } else {
-              this.paddingBottom = 60;
-          }
+				if (
+					this.checkIfIsObject(this.imgIndex)
+					&& (this.items[this.imgIndex].title)
+					|| this.items[this.imgIndex].descripcion
+				) {
+					const el = document.querySelectorAll('.cool-lightbox-caption');
+					if (el.length > 0) {
+						this.paddingBottom = el[0].offsetHeight;
+					}
+				} else {
+					this.paddingBottom = 60;
+				}
 			},
 
 			getPDFurl(url) {
-          if (this.imgIndex === null) {
-              return false;
-          }
+				if (this.imgIndex === null) {
+					return false;
+				}
 
-          if (url.toString().endsWith('.pdf')) {
-              return url;
-          }
+				if (url.toString().endsWith('.pdf')) {
+					return url;
+				}
 
-          return false;
+				return false;
 			},
 
 			// check if is video
 			getVideoUrl(itemSrc) {
-          const vkVideoUrl = this.getVkVideoUrl(itemSrc);
-          const boomstreamUrl = this.getBoomstreamUrl(itemSrc);
-          const youtubeUrl = this.getYoutubeUrl(itemSrc);
-          const vimeoUrl = this.getVimeoUrl(itemSrc);
-          const mp4Url = this.checkIsMp4(itemSrc);
+				const vkVideoUrl = this.getVkVideoUrl(itemSrc);
+				const boomstreamUrl = this.getBoomstreamUrl(itemSrc);
+				const youtubeUrl = this.getYoutubeUrl(itemSrc);
+				const vimeoUrl = this.getVimeoUrl(itemSrc);
+				const mp4Url = this.checkIsMp4(itemSrc);
 
-          if (vkVideoUrl) {
-              return vkVideoUrl;
-          }
+				if (vkVideoUrl) {
+					return vkVideoUrl;
+				}
 
-          if (boomstreamUrl) {
-              return boomstreamUrl;
-          }
+				if (boomstreamUrl) {
+					return boomstreamUrl;
+				}
 
-          if (youtubeUrl) {
-              return youtubeUrl;
-          }
+				if (youtubeUrl) {
+					return youtubeUrl;
+				}
 
-          if (vimeoUrl) {
-              return vimeoUrl;
-          }
+				if (vimeoUrl) {
+					return vimeoUrl;
+				}
 
-          if (mp4Url) {
-              return mp4Url;
-          }
+				if (mp4Url) {
+					return mp4Url;
+				}
 
-          return false;
+				return false;
 			},
 
 			getVkVideoUrl(itemSrc) {
-          const directRegex = /https:\/\/vk\..*\/video-(\d+)_(\d+)/;
-          const personalRegex = /https:\/\/vk\..*\/video\/@.*\?z=video-(\d+)_(\d+)/;
+				const directRegex = /https:\/\/vk\..*\/video-(\d+)_(\d+)/;
+				const personalRegex = /https:\/\/vk\..*\/video\/@.*\?z=video-(\d+)_(\d+)/;
 
-          const directMatch = itemSrc.match(directRegex);
-          const personalMatch = itemSrc.match(personalRegex);
+				const directMatch = itemSrc.match(directRegex);
+				const personalMatch = itemSrc.match(personalRegex);
 
-          const source = directMatch || personalMatch || [null, null, null];
-          const [_, oid, id] = source;
+				const source = directMatch || personalMatch || [null, null, null];
+				const [_, oid, id] = source;
 
-          if (!oid || !id) return false;
+				if (!oid || !id) return false;
 
-          return `https://vk.ru/video_ext.php?oid=-${oid}&id=${id}&hd=2`;
+				return `https://vk.ru/video_ext.php?oid=-${oid}&id=${id}&hd=2`;
 			},
 
 			getBoomstreamUrl(itemSrc) {
-          return itemSrc.startsWith('https://play.boomstream.com')
-              ? itemSrc
-              : false;
+				return itemSrc.startsWith('https://play.boomstream.com')
+					? itemSrc
+					: false;
 			},
 
 			// getYoutube ID
 			getYoutubeID(url) {
-          // youtube data
-          const youtubeRegex = /^(?:https?:\/\/)?(?:w{3}\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))(([\w\-]){11})\S*$/;
-          const ytId = url.match(youtubeRegex)?.[1] ?? false;
+				// youtube data
+				const youtubeRegex = /^(?:https?:\/\/)?(?:w{3}\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))(([\w\-]){11})\S*$/;
+				const ytId = url.match(youtubeRegex)?.[1] ?? false;
 
-          if (ytId) {
-              return ytId;
-          }
+				if (ytId) {
+					return ytId;
+				}
 
-          return false;
+				return false;
 			},
 
 			// get youtube url
 			getYoutubeUrl(url) {
-          // youtube data
-          const ytId = this.getYoutubeID(url);
+				// youtube data
+				const ytId = this.getYoutubeID(url);
 
-          // if is youtube video
-          if (ytId) {
-              // check if allows youtube cookies
-              if (this.youtubeCookies) {
-                  return `https://www.youtube.com/embed/${ytId}`;
-              }
+				// if is youtube video
+				if (ytId) {
+					// check if allows youtube cookies
+					if (this.youtubeCookies) {
+						return `https://www.youtube.com/embed/${ytId}`;
+					}
 
-              return `https://www.youtube-nocookie.com/embed/${ytId}`;
-          }
+					return `https://www.youtube-nocookie.com/embed/${ytId}`;
+				}
 
-          return false;
+				return false;
 			},
 
 			// vimeo ID
 			getVimeoID(url) {
-          // if is vimeo video
-          // eslint-disable-next-line regexp/optimal-quantifier-concatenation
-          const result = url.match(/(?:w{3}\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/[^/]*\/videos\/|album\/\d+\/video\/|video\/)?(\d+)[\w\-]*/i);
-          if (result !== null) {
-              return result[1];
-          }
+				// if is vimeo video
+				// eslint-disable-next-line regexp/optimal-quantifier-concatenation
+				const result = url.match(/(?:w{3}\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/[^/]*\/videos\/|album\/\d+\/video\/|video\/)?(\d+)[\w\-]*/i);
+				if (result !== null) {
+					return result[1];
+				}
 
-          return false;
+				return false;
 			},
 
 			// get vimeo url
 			getVimeoUrl(url) {
-          // if is vimeo video
-          // eslint-disable-next-line regexp/optimal-quantifier-concatenation
-          const result = url.match(/(?:w{3}\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/[^/]*\/videos\/|album\/\d+\/video\/|video\/)?(\d+)[\w\-]*/i);
-          if (result !== null) {
-              return `//player.vimeo.com/video/${result[1]}?hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1`;
-          }
+				// if is vimeo video
+				// eslint-disable-next-line regexp/optimal-quantifier-concatenation
+				const result = url.match(/(?:w{3}\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/[^/]*\/videos\/|album\/\d+\/video\/|video\/)?(\d+)[\w\-]*/i);
+				if (result !== null) {
+					return `//player.vimeo.com/video/${result[1]}?hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1`;
+				}
 
-          return false;
+				return false;
 			},
 
 			// check if video is mp4
 			checkIsMp4(url) {
-          if (this.imgIndex === null) {
-              return false;
-          }
+				if (this.imgIndex === null) {
+					return false;
+				}
 
-          const str = url.toString();
-          const videoExtensions = [
-              '.mp4',
-              '.mov',
-              '.webm',
-              '.ogg',
-              '.avi',
-          ];
-          const isValidExtension = videoExtensions.some((videoExtension) => {
-              return (
-                  str.includes(videoExtension)
-                  || str.includes(videoExtension.toUpperCase())
-              );
-          });
-          if (isValidExtension) {
-              return url;
-          }
+				const str = url.toString();
+				const videoExtensions = [
+					'.mp4',
+					'.mov',
+					'.webm',
+					'.ogg',
+					'.avi',
+				];
+				const isValidExtension = videoExtensions.some((videoExtension) => {
+					return (
+						str.includes(videoExtension)
+						|| str.includes(videoExtension.toUpperCase())
+					);
+				});
+				if (isValidExtension) {
+					return url;
+				}
 
-          return false;
+				return false;
 			},
 
 			// if is video get extension
 			getVideoExt(url) {
-          if (this.imgIndex === null) {
-              return false;
-          }
+				if (this.imgIndex === null) {
+					return false;
+				}
 
-          const str = url.toString();
-          if (str.includes('.mp4') || str.includes('.mov')) {
-              return 'mp4';
-          }
+				const str = url.toString();
+				if (str.includes('.mp4') || str.includes('.mov')) {
+					return 'mp4';
+				}
 
-          if (str.includes('.webm')) {
-              return 'webm';
-          }
+				if (str.includes('.webm')) {
+					return 'webm';
+				}
 
-          if (str.includes('.ogg')) {
-              return 'ogg';
-          }
+				if (str.includes('.ogg')) {
+					return 'ogg';
+				}
 
-          if (str.includes('.avi')) {
-              return 'avi';
-          }
+				if (str.includes('.avi')) {
+					return 'avi';
+				}
 
-          return false;
+				return false;
 			},
 
 			// check if item is object
 			checkIfIsObject(itemIndex) {
-          const item = this.items[itemIndex];
-          if (typeof item === 'object' && item !== null) {
-              return true;
-          }
-          return false;
+				const item = this.items[itemIndex];
+				if (typeof item === 'object' && item !== null) {
+					return true;
+				}
+				return false;
 			},
 
 			// arrows and escape events
 			eventListener(e) {
-          switch (e.keyCode) {
-              case 39:
-                  return this.onNextClick();
-              case 37:
-                  return this.onPrevClick();
-              case 38:
-              case 40:
-              case ' ':
-                  return e.preventDefault();
-              case 27:
-                  return this.close();
-              default:
-              // no default
-          }
+				switch (e.keyCode) {
+					case 39:
+						return this.onNextClick();
+					case 37:
+						return this.onPrevClick();
+					case 38:
+					case 40:
+					case ' ':
+						return e.preventDefault();
+					case 27:
+						return this.close();
+					default:
+					// no default
+				}
 			},
-  },
+		},
 
-  beforeUnmount() {
+		beforeUnmount() {
 			if (this.enableScrollLock) {
-          this.removeCompensateForScrollbar();
-          if (this.$refs.coolLightbox) {
-              enableBodyScroll(this.$refs.coolLightbox);
-          }
+				this.removeCompensateForScrollbar();
+				if (this.$refs.coolLightbox) {
+					enableBodyScroll(this.$refs.coolLightbox);
+				}
 			}
-  },
-});
+		},
+	});
 </script>
 
 <style lang="scss" src="./cool-light-box.scss"></style>
