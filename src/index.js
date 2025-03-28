@@ -11,16 +11,17 @@ const plugin = {
     install,
 };
 
-export default CoolLightBox;
+export default plugin;
 
-// Auto-install if Vue is detected globally
-let GlobalVue = null;
-if (typeof window !== 'undefined') {
-    GlobalVue = window.Vue;
-} else if (typeof global !== 'undefined') {
-    GlobalVue = global.Vue;
-}
+export { CoolLightBox };
 
-if (GlobalVue) {
-    GlobalVue.use(plugin);
-}
+// let GlobalVue = null;
+// if (typeof window !== 'undefined') {
+// 	GlobalVue = window.Vue;
+// } else if (typeof global !== 'undefined') {
+// 	GlobalVue = global.vue;
+// }
+
+// if (GlobalVue) {
+// 	GlobalVue.use(plugin);
+// }

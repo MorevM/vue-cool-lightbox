@@ -9,7 +9,7 @@ const isYoutubeVideo = (url) => {
 const isBoomstreamVideo = (url) => url.startsWith('https://play.boomstream.com');
 
 export default {
-	inserted: (el) => {
+	mounted(el) {
 		const autoplayVideo = () => {
 			const { tagName } = el;
 			const { autoplay } = el.dataset;

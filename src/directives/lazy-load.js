@@ -24,7 +24,7 @@ const findChild = (parent, nodeName) => {
 };
 
 export default {
-	inserted: el => {
+	mounted(el) {
 		const loadImage = () => {
 			const imageElement = findChild(el, 'img');
 			const pictureElement = findChild(el, 'picture');
