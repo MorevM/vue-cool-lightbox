@@ -1,27 +1,26 @@
-/* global global */
 import CoolLightBox from './components/cool-light-box.vue';
 
-const install = (Vue) => {
-	if (install.installed) return;
-	install.installed = true;
-	Vue.component('CoolLightBox', CoolLightBox);
+// Define the install method for Vue 3 plugins
+const install = (app) => {
+    if (install.installed) return;
+    install.installed = true;
+    app.component('CoolLightBox', CoolLightBox); // Register the component globally
 };
 
 const plugin = {
-	install,
+    install,
 };
 
+export default CoolLightBox;
+
+// Auto-install if Vue is detected globally
 let GlobalVue = null;
 if (typeof window !== 'undefined') {
-	GlobalVue = window.Vue;
+    GlobalVue = window.Vue;
 } else if (typeof global !== 'undefined') {
-	GlobalVue = global.vue;
+    GlobalVue = global.Vue;
 }
 
 if (GlobalVue) {
-	GlobalVue.use(plugin);
+    GlobalVue.use(plugin);
 }
-
-CoolLightBox.install = install;
-
-export default CoolLightBox;
