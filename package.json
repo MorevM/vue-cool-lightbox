@@ -37,6 +37,7 @@
 		"dev": "vite --config vite.config.dev.js",
 		"build": "vite build --config vite.config.build.js",
 		"build:playground": "vite build --config vite.config.dev.js",
+		"preview:playground": "vite preview --config vite.config.dev.js",
 		"lint:eslint": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\"",
 		"lint:eslint:fix": "eslint \"**/*.{js,ts,vue,yaml,yml,json,md,html}\" --fix",
 		"lint": "yarn lint:eslint",
