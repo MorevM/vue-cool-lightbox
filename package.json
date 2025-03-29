@@ -1,6 +1,6 @@
 {
 	"name": "@jackhuynh1995/vue-cool-lightbox",
-	"description": "A fork of pretty Vue.js component to display an image gallery lightbox inspired by fancybox with VK Video support",
+	"description": "A fork of pretty Vue.js component to display an image gallery lightbox inspired by fancybox with VK Video support and Vue 3 on available",
 	"type": "module",
 	"version": "1.3.0",
 	"private": false,
