@@ -39,7 +39,7 @@ export default {
 
 ## Docs
 
-You can see the complete documentation with examples here: [https://vue-cool-lightbox.lucaspulliese.com/](https://vue-cool-lightbox.lucaspulliese.com/).
+You can see the complete documentation with examples here: [https://vue-cool-lightbox.vercel.app/](https://vue-cool-lightbox.vercel.app/).
 
 ## Contributing
 
