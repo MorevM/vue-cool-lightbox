@@ -4,12 +4,12 @@
 
 > The content below is unchanged except for the name of the package
 
-# No longer maintained
+# <s>No longer maintained</s>
 
-Seeing that Vue 3 came out and I don't have more time to maintain it, I think it's a good time to archive it.
-Thanks to the community to help me to maintain it and thanks to the ones who used it on their projects, was an awesome experience ♥️
+<s>Seeing that Vue 3 came out and I don't have more time to maintain it, I think it's a good time to archive it.
+Thanks to the community to help me to maintain it and thanks to the ones who used it on their projects, was an awesome experience </s> ♥️
 
-# Vue-cool-lightbox
+# Vue-cool-lightbox (Vue 3 🚀)
 
 Vue-cool-lightbox is a pretty Vue.js lightbox component, inspired by [fancybox](http://fancyapps.com/fancybox/3/) with zoom, swipe, captions and videos supported.
 
