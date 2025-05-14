@@ -46,6 +46,13 @@
 						src: 'https://play.boomstream.com/oUY6fsRa',
 						autoplay: true,
 					},
+					{
+						src: 'https://rutube.ru/video/6d5158a963258b55effcc1070326986d/',
+						autoplay: true,
+					},
+					{
+						src: 'https://rutube.ru/play/embed/6d5158a963258b55effcc1070326986d/',
+					},
 				],
 				index: null,
 			};

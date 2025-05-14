@@ -815,6 +815,7 @@
 								&& !this.getVimeoUrl(this.getItemSrc(prev))
 								&& !this.getVkVideoUrl(this.getItemSrc(prev))
 								&& !this.getBoomstreamUrl(this.getItemSrc(prev))
+								&& !this.getRutubeUrl(this.getItemSrc(prev))
 							) {
 								this.stopVideos();
 							}
@@ -1732,6 +1733,7 @@
 			getVideoUrl(itemSrc) {
 				const vkVideoUrl = this.getVkVideoUrl(itemSrc);
 				const boomstreamUrl = this.getBoomstreamUrl(itemSrc);
+				const rutubeUrl = this.getRutubeUrl(itemSrc);
 				const youtubeUrl = this.getYoutubeUrl(itemSrc);
 				const vimeoUrl = this.getVimeoUrl(itemSrc);
 				const mp4Url = this.checkIsMp4(itemSrc);
@@ -1742,6 +1744,10 @@
 
 				if (boomstreamUrl) {
 					return boomstreamUrl;
+				}
+
+				if (rutubeUrl) {
+					return rutubeUrl;
 				}
 
 				if (youtubeUrl) {
@@ -1778,6 +1784,18 @@
 				return itemSrc.startsWith('https://play.boomstream.com')
 					? itemSrc
 					: false;
+			},
+
+			getRutubeUrl(itemSrc) {
+				if (!itemSrc.startsWith('https://rutube.ru')) return false;
+				// Already URL for embedding
+				if (itemSrc.startsWith('https://rutube.ru/play/embed/')) return itemSrc;
+
+				const [_, videoId] = itemSrc.match(/https:\/\/rutube\.ru\/video\/(.*?)(?:$|\/)/) ?? [null, null];
+
+				if (!videoId) return false;
+
+				return `https://rutube.ru/play/embed/${videoId}/`;
 			},
 
 			// getYoutube ID

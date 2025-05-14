@@ -7,6 +7,7 @@ const isYoutubeVideo = (url) => {
 };
 
 const isBoomstreamVideo = (url) => url.startsWith('https://play.boomstream.com');
+const isRutubeVideo = (url) => url.startsWith('https://rutube.ru');
 
 export default {
 	inserted: (el) => {
@@ -34,9 +35,13 @@ export default {
 					? 'autostart'
 					: 'autoplay';
 
+				const autoplayParameterValue = isRutubeVideo(el.src)
+					? 'true'
+					: '1';
+
 				// append autoplay
 				url.searchParams.append(muted, 1);
-				url.searchParams.append(autoplayParameterName, 1);
+				url.searchParams.append(autoplayParameterName, autoplayParameterValue);
 
 				el.src = url.href;
 			}
